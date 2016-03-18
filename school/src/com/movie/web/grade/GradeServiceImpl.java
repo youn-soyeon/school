@@ -1,10 +1,12 @@
 package com.movie.web.grade;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GradeServiceImpl implements GradeService{
 	// 멤버 필드(속성 집합)
 	ArrayList<GradeBean> gradeList;
+	GradeDAO dao = new GradeDAOImpl();
 	
 	public GradeServiceImpl() {
 		gradeList = new ArrayList<GradeBean>(); // 초기화
@@ -23,40 +25,27 @@ public class GradeServiceImpl implements GradeService{
 	}
 
 	@Override
-	public ArrayList<GradeBean> getList() {
+	public List<GradeMemberBean> getList() {
 		// R 성적표 리스트 출력
-		return gradeList;
+		return dao.selectAll();
 	}
 
 	@Override
-	public GradeBean getGradeByHak(int hak) {
+	public GradeMemberBean getGradeByHak(int hak) {
 		// R 성적표 조회(학번)
-		GradeBean tempGrade = new GradeBean(); // 리턴값 담기위한 것
-		for (int i = 0; i < gradeList.size(); i++) {
-			if (hak == gradeList.get(i).getHak()) {
-				tempGrade = gradeList.get(i);
-				break;
-			}
-		}
-		return tempGrade;
+		return dao.selectGradeByHak(hak);
 	}
 
 	@Override
-	public ArrayList<GradeBean> getGradesByName(String name) {
+	public List<GradeMemberBean> getGradesByName(String name) {
 		// R 성적표 조회(이름, 동명이인 가능성)
-		ArrayList<GradeBean> tempList = new ArrayList<GradeBean>();
-		for (int i = 0; i < gradeList.size(); i++) {
-			if (name.equals(gradeList.get(i).getId())) {
-				tempList.add(gradeList.get(i));
-			}
-		}
-		return tempList;
+		return dao.selectGradesByName(name);
 	}
 	
 	@Override
 	public int getCount() {
 		// R 카운트 조회(개수)
-		return gradeList.size();		
+		return dao.count();		
 	}
 
 	@Override
@@ -70,16 +59,16 @@ public class GradeServiceImpl implements GradeService{
 		// U 성적표 수정
 		
 		String temp = "수정 실패";
-		if(gradeList.contains(getGradeByHak(grade.getHak()))){
-			GradeBean searchedGrade = getGradeByHak(grade.getHak());
-			searchedGrade.setJava(grade.getJava());
-			searchedGrade.setSql(grade.getSql());
-			searchedGrade.setJsp(grade.getJsp());
-			searchedGrade.setSpring(grade.getSpring());
-			
-			
-			temp = "수정 성공";
-		}
+//		if(gradeList.contains(getGradeByHak(grade.getHak()))){
+//			GradeBean searchedGrade = getGradeByHak(grade.getHak());
+//			searchedGrade.setJava(grade.getJava());
+//			searchedGrade.setSql(grade.getSql());
+//			searchedGrade.setJsp(grade.getJsp());
+//			searchedGrade.setSpring(grade.getSpring());
+//			
+//			
+//			temp = "수정 성공";
+//		}
 		/*
 		this.delete(grade.getHak());
 		this.input(grade);

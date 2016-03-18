@@ -2,13 +2,13 @@ package com.movie.web.grade;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class GradeController {
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 		GradeService service = new GradeServiceImpl();
-		GradeBean temp = new GradeBean();
-		String tempStr = "";
+
 		while (true) {
 			System.out.println("[메뉴] 1.등록 2.수정 3.삭제 4.조회(전체) 5.조회(이름) 6.조회(학번) 7.회원수 0.종료");
 			
@@ -21,30 +21,27 @@ public class GradeController {
 			case 2: 
 				System.out.println("수정하려는 성적표의 학번, java, sql, jsp, spring 점수를 입력하세요 > ");
 				int hak = s.nextInt();
-				String name = service.getGradeByHak(hak).getId();
-				System.out.println(service.update(new GradeBean(hak, name, s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt())));
+//				String name = service.getGradeByHak(hak).getId();
+//				System.out.println(service.update(new GradeBean(hak, name, s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt())));
 				break;
 			case 3: 
 				System.out.println("삭제하려는 학번을 입력하세요 > ");
 				System.out.println(service.delete(s.nextInt()));
 				break;
-			case 4: 
+			case 4: // o
 				System.out.println("전체 학생의 성적표를 조회합니다.");
 				System.out.println(service.getList());
 				break;
-			case 5: 
+			case 5: // o
 				System.out.println("조회하려는 이름을 입력하세요 > ");
-				ArrayList<GradeBean> tempList = service.getGradesByName(s.next());
-				System.out.println((tempList.size() == 0) ? "조회하려는 이름이 없습니다." : tempList);
+				System.out.println(service.getGradesByName(s.next()));
 				break;
-			case 6: 
+			case 6: // o
 				System.out.println("조회하려는 학번을 입력하세요 > ");
-				temp = service.getGradeByHak(s.nextInt());
-				tempStr = (temp.getId() != null) ? temp.toString() : "조회하려는 학번이 없습니다.";
-				System.out.println(tempStr);
+				System.out.println(service.getGradeByHak(s.nextInt()));
 				break;
-			case 7: 
-				System.out.println(service.getCount());
+			case 7: // o
+				System.out.println("총 회원수 : " + service.getCount());
 				break;
 			case 0: System.out.println("프로그램을 종료합니다."); return;
 
