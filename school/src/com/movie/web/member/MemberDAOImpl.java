@@ -16,21 +16,29 @@ public class MemberDAOImpl implements MemberDAO {
 	private ResultSet rs; // 리턴값 회수 객체
 
 	@Override
-	public void insert(MemberBean member) {
+	public String insert(MemberBean member) {
 		// 회원가입
+		String tempStr = "데이터 등록에 실패하였습니다.";
 		try {
 			Class.forName(Constants.MSSQL_DRIVER);
 			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
 			stmt = conn.createStatement();
-			rs = pstmt.executeQuery("INSER INTO Member(id, name, password, addr, birth) VALUES(?,?,?,?,?)");
+
+			rs = pstmt.executeQuery("INSERT INTO Member(id, password, name, addr, birth) VALUES(?,?,?,?,?)");
 			pstmt.setString(1, member.getId());
-			pstmt.setString(2, member.getName());
-			pstmt.setString(3, member.getPassword());
+			pstmt.setString(2, member.getPassword());
+			pstmt.setString(3, member.getName());
 			pstmt.setString(4, member.getAddr());
 			pstmt.setInt(5, member.getBirth());
+			
+			pstmt.executeQuery();
+
+			tempStr = "데이터 등록에 성공하였습니다.";
 		} catch (Exception e) {
+			System.out.println("insert()에서 에러 발생");
 			e.printStackTrace();
 		}
+		return tempStr;
 	}
 
 	@Override

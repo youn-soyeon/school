@@ -1,6 +1,6 @@
 CREATE TABLE Grade(
 	hak NUMBER PRIMARY KEY,
-	id VARCHAR2(30) UNIQUE,
+	id VARCHAR2(30) NOT NULL,
 	java NUMBER NOT NULL,
 	sql NUMBER NOT NULL,
 	jsp NUMBER NOT NULL,
@@ -9,12 +9,14 @@ CREATE TABLE Grade(
 
 SELECT * FROM Grade;
 
-DROP TABLE Grade CASCADE;
+DROP TABLE Grade;
 
 -- 시퀀스 생성
 CREATE SEQUENCE hak
 START WITH 160001
 INCREMENT BY 1;
+
+DROP SEQUENCE hak;
 
 INSERT INTO Grade(hak, id, java, sql, jsp, spring)
 VALUES (hak.NEXTVAL, 'hong', 50, 60, 20, 30);

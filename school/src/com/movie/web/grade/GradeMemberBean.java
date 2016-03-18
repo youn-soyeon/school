@@ -4,6 +4,19 @@ public class GradeMemberBean {
 	private String id, password, name, addr;
 	private int hak, java, sql, jsp, spring, birth; // 생년월일은 800101 처럼 숫자만 입력
 
+	public GradeMemberBean() {}
+	
+	public GradeMemberBean(String id, int java, int sql, int jsp, int spring, String name, String password, String addr, int birth) {
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.addr = addr;
+		this.java = java;
+		this.sql = sql;
+		this.jsp = jsp;
+		this.spring = spring;
+		this.birth = birth;
+	}
 	public String getId() {
 		return id;
 	}
@@ -88,6 +101,6 @@ public class GradeMemberBean {
 	public String toString() {
 		return "조회(학번) [아이디=" + id + ", 비밀번호=" + password + ", 이름=" + name + ", 주소=" + addr + ", 학번="
 				+ hak + ", 자바=" + java + ", SQL=" + sql + ", JSP=" + jsp + ", 스프링=" + spring + ", 생년월일=" + birth
-				+ "]";
+				+ "]" + "\n";
 	}
 }

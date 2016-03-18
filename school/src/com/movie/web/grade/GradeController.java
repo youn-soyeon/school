@@ -14,23 +14,20 @@ public class GradeController {
 			
 			switch (s.nextInt()) {
 			case 1: 
-				System.out.println("등록하고자 하는 학생의 학번, 이름, JAVA, SQL, JSP, 스프링 점수를 입력하세요. > ");
-				service.input(new GradeBean(s.nextInt(), s.next(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt())); // Bean > DAO > DB전달
-				System.out.println("등록을 완료하였습니다.");
+				System.out.println("등록하고자 하는 학생의 id, JAVA, SQL, JSP, 스프링 점수, 이름, 비밀번호, 주소, 생년월일을 입력하세요. > ");
+				service.input(new GradeMemberBean(s.next(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.next(), s.next(), s.next() ,s.nextInt())); // Bean > DAO > DB전달
 				break;
 			case 2: 
 				System.out.println("수정하려는 성적표의 학번, java, sql, jsp, spring 점수를 입력하세요 > ");
 				int hak = s.nextInt();
-//				String name = service.getGradeByHak(hak).getId();
-//				System.out.println(service.update(new GradeBean(hak, name, s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt())));
 				break;
-			case 3: 
+			case 3: // o
 				System.out.println("삭제하려는 학번을 입력하세요 > ");
 				System.out.println(service.delete(s.nextInt()));
 				break;
 			case 4: // o
 				System.out.println("전체 학생의 성적표를 조회합니다.");
-				System.out.println(service.getList());
+				System.out.println(service.getList().toString());
 				break;
 			case 5: // o
 				System.out.println("조회하려는 이름을 입력하세요 > ");

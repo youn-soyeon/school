@@ -24,3 +24,6 @@ SELECT * FROM GradeMember;
 SELECT * FROM GradeMember
 WHERE name = '김유신';
 
+DROP VIEW GradeMember;
+
+SELECT COUNT(*) FROM GradeMember;

@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface GradeDAO { // DAO : data access object
 	// C 성적표 등록
-	public void insert(GradeBean bean); // 추상 메소드, 기능을 추상화 한다.
+	public String insert(GradeMemberBean bean); // 추상 메소드, 기능을 추상화 한다.
 	// R 성적표 리스트 출력
 	public List<GradeMemberBean> selectAll();
 	// R 성적표 조회(학번)

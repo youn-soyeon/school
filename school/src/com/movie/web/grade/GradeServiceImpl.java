@@ -14,14 +14,9 @@ public class GradeServiceImpl implements GradeService{
 	
 	// 멤버 메소드 area(메소드 집)
 	@Override
-	public void input(GradeBean bean) {
+	public String input(GradeMemberBean bean) {
 		// C 성적표 등록
-		gradeList.add(new GradeBean(2,"김유신",100,100,100,100));
-		gradeList.add(new GradeBean(3,"강감찬",90,90,90,90));
-		gradeList.add(new GradeBean(4,"유관순",80,80,80,80));
-		gradeList.add(new GradeBean(5,"김구",70,70,70,70));
-		gradeList.add(new GradeBean(6,"김구",70,70,70,70));
-		gradeList.add(bean);
+		return dao.insert(bean);
 	}
 
 	@Override

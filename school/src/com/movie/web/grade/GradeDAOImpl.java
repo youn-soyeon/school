@@ -21,32 +21,49 @@ public class GradeDAOImpl implements GradeDAO {
 	private ResultSet rs; // 리턴값 회수 객체
 
 	@Override
-	public void insert(GradeBean bean) {
+	public String insert(GradeMemberBean bean) {
+		String tempStr = "데이터 등록에 실패하였습니다.";
+		try {
+			Class.forName(Constants.MSSQL_DRIVER);
+			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
+			pstmt = conn.prepareStatement("INSERT INTO Grade(hak, id, java, sql, jsp, spring) VALUES(hak.NEXTVAL,?,?,?,?,?)");
+			pstmt.setString(1, bean.getId());
+			pstmt.setInt(2, bean.getJava());
+			pstmt.setInt(3, bean.getSql());
+			pstmt.setInt(4, bean.getJsp());
+			pstmt.setInt(5, bean.getSpring());
+			
+			pstmt.executeUpdate();
 
+			tempStr = "데이터 등록에 성공하였습니다.";
+		} catch (Exception e) {
+			System.out.println("insert()에서 에러 발생");
+			e.printStackTrace();
+		}
+		return tempStr;
 	}
 
 	@Override
 	public List<GradeMemberBean> selectAll() {
 		List<GradeMemberBean> gm = new ArrayList<GradeMemberBean>();
-		GradeMemberBean bean = new GradeMemberBean();
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
 			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM GradeMember");
 			while (rs.next()) {
+				GradeMemberBean bean = new GradeMemberBean();
 				bean.setId(rs.getString("id"));
 				bean.setName(rs.getString("name"));
 				bean.setPassword(rs.getString("password"));
 				bean.setAddr(rs.getString("addr"));
 				bean.setBirth(rs.getInt("birth"));
-				bean.setId(rs.getString("id"));
 				bean.setHak(rs.getInt("hak"));
 				bean.setJava(rs.getInt("java"));
 				bean.setSql(rs.getInt("sql"));
 				bean.setJsp(rs.getInt("jsp"));
 				bean.setSpring(rs.getInt("spring"));
-				
+
 				gm.add(bean);
 			}
 		} catch (Exception e) {
@@ -72,7 +89,6 @@ public class GradeDAOImpl implements GradeDAO {
 				bean.setPassword(rs.getString("password"));
 				bean.setAddr(rs.getString("addr"));
 				bean.setBirth(rs.getInt("birth"));
-				bean.setId(rs.getString("id"));
 				bean.setHak(rs.getInt("hak"));
 				bean.setJava(rs.getInt("java"));
 				bean.setSql(rs.getInt("sql"));
@@ -92,25 +108,24 @@ public class GradeDAOImpl implements GradeDAO {
 	public List<GradeMemberBean> selectGradesByName(String name) {
 		// R 성적표 조회 (이름)
 		List<GradeMemberBean> gm = new ArrayList<GradeMemberBean>();
-		GradeMemberBean bean = new GradeMemberBean();
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
 			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM GradeMember WHERE name = '" + name + "'");
 			while (rs.next()) {
+				GradeMemberBean bean = new GradeMemberBean();
 				bean.setId(rs.getString("id"));
 				bean.setName(rs.getString("name"));
 				bean.setPassword(rs.getString("password"));
 				bean.setAddr(rs.getString("addr"));
 				bean.setBirth(rs.getInt("birth"));
-				bean.setId(rs.getString("id"));
 				bean.setHak(rs.getInt("hak"));
 				bean.setJava(rs.getInt("java"));
 				bean.setSql(rs.getInt("sql"));
 				bean.setJsp(rs.getInt("jsp"));
 				bean.setSpring(rs.getInt("spring"));
-				
+
 				gm.add(bean);
 			}
 		} catch (Exception e) {
@@ -127,10 +142,15 @@ public class GradeDAOImpl implements GradeDAO {
 			Class.forName(Constants.ORACLE_DRIVER);
 			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT COUNT(*) FROM GradeMember");
-			while (rs.next()) {
-				count = rs.getInt(1);
-			}
+//			rs = stmt.executeQuery("SELECT COUNT(*) FROM GradeMember");
+//			while (rs.next()) {
+//				count = rs.getInt(1);
+//			}
+			// 회원 수가 어마어마할 때
+			// while문 사용하는 것 보다
+			// 커서가 바로 이동해서 row번호를 가져오는 방식을 사용하는 것이 좋다. (빠름)
+			 stmt.executeQuery("SELECT * FROM GradeMember").last();
+			 count = rs.getRow();
 		} catch (Exception e) {
 			System.out.println("count()에서 에러 발생");
 			e.printStackTrace();
@@ -149,8 +169,8 @@ public class GradeDAOImpl implements GradeDAO {
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
 			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("DELETE FROM GradeMember WHERE = '" + hak + "'");
+			pstmt = conn.prepareStatement("DELETE FROM GradeMember WHERE = '" + hak + "'");
+			pstmt.executeUpdate();
 			while (rs.next()) {
 				tempStr = hak + "의 데이터를 성공적으로 삭제했습니다.";
 			}
