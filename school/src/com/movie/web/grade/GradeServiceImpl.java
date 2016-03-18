@@ -46,7 +46,7 @@ public class GradeServiceImpl implements GradeService{
 		// R 성적표 조회(이름, 동명이인 가능성)
 		ArrayList<GradeBean> tempList = new ArrayList<GradeBean>();
 		for (int i = 0; i < gradeList.size(); i++) {
-			if (name.equals(gradeList.get(i).getName())) {
+			if (name.equals(gradeList.get(i).getId())) {
 				tempList.add(gradeList.get(i));
 			}
 		}
