@@ -13,11 +13,13 @@ VALUES ('hong', '홍길동', '1', '서울', 800101);
 INSERT INTO Member(id, name, password, addr, birth)
 VALUES ('kim', '김유신', '1', '경기', 900203);
 INSERT INTO Member(id, name, password, addr, birth)
-VALUES ('lee', '이순신', '1', '부산', 000909);
+VALUES ('lee', '이순신', '1', '부산', 100909);
 INSERT INTO Member(id, name, password, addr, birth)
-VALUES ('song', '송중기', '1', '대전', 041001);
+VALUES ('song', '송중기', '1', '대전', 141001);
 INSERT INTO Member
-VALUES ('yoon', '윤동주', '1', '인천', 060201);
+VALUES ('yoon', '윤동주', '1', '인천', 160201);
+INSERT INTO Member(id, name, password, addr, birth)
+VALUES ('kim2', '김유신', '1', 'LA', 851111);
 
 SELECT * FROM Member;
 
