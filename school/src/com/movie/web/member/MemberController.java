@@ -1,38 +1,43 @@
 package com.movie.web.member;
 
-import java.util.Scanner;
+import java.io.IOException;
 
-public class MemberController {
-	public static void main(String[] args) {
-		Scanner s = new Scanner(System.in);
-		MemberService service = new MemberServiceImpl(); // copy 문법? 내일해욧
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.movie.web.global.Command;
+import com.movie.web.global.CommandFactory;
+import com.movie.web.global.Constants;
+
+@WebServlet("/member/login_form.do")
+public class MemberController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	// 페이지 이동시에는 doGet (파라미터 없이 return)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		while (true) {
-			System.out.println("[메뉴] 1.가입 2.로그인 3.내정보보기 4.내정보수정 5.탈퇴 0.종료");
-			switch (s.nextInt()) {
-			case 1:
-				System.out.println("[회원가입] 아이디, 비밀번호, 이름, 주소, 생년월일을 입력하세요 > ");
-				System.out.println(service.join(new MemberBean(s.next(), s.next(), s.next(), s.next(), s.nextInt()))); 
-				break;
-			case 2: 
-				System.out.println("[로그인] 아이디와 비밀번호를 입력하세요 > ");
-				System.out.println(service.login(s.next(), s.next()).toString()); 
-				break;
-			case 3: 
-				System.out.print("[내정보보기] 아이디를 입력하세요 > ");
-				System.out.println(service.detail(s.next()).toString());
-				break;
-			case 4: 
-				System.out.println("[내정보수정] 아이디, 비밀번호, 이름, 주소, 생년월일를 입력하세요 > ");
-				System.out.println(service.update(new MemberBean(s.next(), s.next(), s.next(), s.next(), s.nextInt())));
-				break;
-			case 5: 
-				System.out.println("[회원탈퇴] 탈퇴하실 아이디를 입력하세요 > ");
-				break;
-			
-			case 0: System.out.println("프로그램을 종료합니다."); return;
-			default: System.out.println("잘못된 입력입니다. 다시 메뉴로 돌아갑니다."); continue;
-			}
-		}
+		System.out.println("인덱스에서 들어옴");
+//		RequestDispatcher dis = request.getRequestDispatcher(new Command(doProcess(request, response)[0], doProcess(request, response)[1]).getView());
+		CommandFactory fac = new CommandFactory();
+		RequestDispatcher dis = request.getRequestDispatcher(fac.getCommand(doProcess(request, response)[0], doProcess(request, response)[1]).getView());
+		dis.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+	
+	public String[] doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String[] arr = new String[2];
+		String path = request.getServletPath();
+		arr[0] = path.split("/")[1];
+		arr[1] = path.split("/")[2].split("\\.")[0];
+//		arr[1] = path.split("/")[2].substring(0, path.split("/")[2].indexOf("."));
+//		arr[1] = path.split("/")[2].substring(0, path.split("/")[2].length()-3);
+		return arr;
 	}
 }
