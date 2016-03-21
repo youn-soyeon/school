@@ -10,6 +10,8 @@ public class Command {
 	//상속할거면 protected, 안할거면 private
 	private String directory, action, view;
 
+	public Command() {}
+	
 	public Command(String directory, String action) {
 		this.directory = directory;
 		this.action = action;

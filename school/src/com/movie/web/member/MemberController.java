@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.movie.web.global.Command;
 import com.movie.web.global.CommandFactory;
 
-@WebServlet({ "/member/login_form.do", "/member/join_form.do" })
+@WebServlet({ "/member/login_form.do", "/member/join_form.do", "/member/join.do", "/member/login.do" })
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -23,8 +23,27 @@ public class MemberController extends HttpServlet {
 		String path = request.getServletPath();
 		String directory = path.split("/")[1];
 		String action = path.split("/")[2].split("\\.")[0];
+
+		Command command = new Command();
 		
-		Command command = CommandFactory.createCommand(directory, action);
+		switch (action) {
+		case "join": 
+			String id = request.getParameter("id");
+			System.out.println("아이디 : " + id);
+			break;
+		case "login": 
+			System.out.println("==로그인==");
+			command = CommandFactory.createCommand(directory, "detail");
+			break;
+
+		default: 
+			command = CommandFactory.createCommand(directory, action);
+			break;
+		}
+		
+		System.out.println("디렉토리 : " + directory);
+		System.out.println("오픈될 페이지 : " + command.getView());
+		
 		RequestDispatcher dis = request.getRequestDispatcher(command.getView());
 		dis.forward(request, response);
 	}
