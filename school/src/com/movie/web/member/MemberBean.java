@@ -3,7 +3,6 @@ package com.movie.web.member;
 public class MemberBean {
 	private String id, password, name, addr;
 	private int birth; // 생년월일은 800101 처럼 숫자만 입력
-	private boolean flag;
 
 	// 생성자 오버로딩
 	public MemberBean() {
@@ -55,14 +54,6 @@ public class MemberBean {
 
 	public void setBirth(int birth) {
 		this.birth = birth;
-	}
-
-	public boolean isFlag() {
-		return flag;
-	}
-
-	public void setFlag(boolean flag) {
-		this.flag = flag;
 	}
 
 	@Override
