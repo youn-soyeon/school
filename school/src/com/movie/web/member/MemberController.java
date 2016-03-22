@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.movie.web.global.Command;
 import com.movie.web.global.CommandFactory;
 
-@WebServlet({ "/member/login_form.do", "/member/join_form.do", "/member/join.do", "/member/login.do" })
+@WebServlet({ "/member/login_form.do", "/member/join_form.do", "/member/join.do", "/member/login.do", "/member/admin.do" })
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
