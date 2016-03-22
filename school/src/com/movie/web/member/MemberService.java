@@ -21,7 +21,7 @@ public interface MemberService {
 	/**
 	 * 회원로그인
 	 */
-	public String login(String id, String password);
+	public MemberBean login(String id, String password);
 	/**
 	 * 내정보보기
 	 * */
@@ -34,5 +34,9 @@ public interface MemberService {
 	 * 회원탈퇴
 	 * */
 	public String remove(String id, String password);
+	/**
+	 * id 존재 여부 체크
+	 * */
+	public boolean isMember(String id);
 
 }

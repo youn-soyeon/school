@@ -27,3 +27,6 @@ SELECT * FROM Member
 WHERE id = 'kim';
 
 DROP TABLE Member;
+
+SELECT * FROM Member
+WHERE id = 'kim' and password = '1';

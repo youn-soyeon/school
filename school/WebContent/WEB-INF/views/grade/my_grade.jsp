@@ -1,31 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../global/header.jsp" />
 
-<div class="mg_auto" style="width: 1000px;">
-	
+<div align="center">
 	<table border=1>
 		<tr>
-			<td>과목</td>
-			<td>점수</td>
+			<td><h3>과목</h3></td>
+			<td><h3>점수</h3></td>
 		</tr>
 		<tr>
 			<td>Java</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>JSP</td>
-			<td></td>
+			<td>${score.java }</td>
 		</tr>
 		<tr>
 			<td>SQL</td>
-			<td></td>
+			<td>${score.sql }</td>
+		</tr>
+		<tr>
+			<td>JSP</td>
+			<td>${score.jsp }</td>
 		</tr>
 		<tr>
 			<td>Spring</td>
-			<td></td>
+			<td>${score.spring }</td>
 		</tr>
 	</table>
-	
 </div>
 
 <jsp:include page="../global/footer.jsp" />

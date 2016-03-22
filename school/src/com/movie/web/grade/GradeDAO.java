@@ -1,8 +1,6 @@
 package com.movie.web.grade;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public interface GradeDAO { // DAO : data access object
 	// C 성적표 등록
@@ -13,6 +11,8 @@ public interface GradeDAO { // DAO : data access object
 	public GradeMemberBean selectGradeByHak(int hak);
 	// R 성적표 조회(이름)
 	public List<GradeMemberBean> selectGradesByName(String name);
+	// R 성적표 조회(id)
+	public GradeMemberBean selectGradeById(String id);
 	// R 카운트 조회(개수)
 	public int count();
 	// U 성적표 수정

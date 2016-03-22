@@ -38,11 +38,18 @@ public class GradeServiceImpl implements GradeService{
 	}
 	
 	@Override
+	public GradeMemberBean getGradeById(String id) {
+		// R 성적표 조회(id)
+		GradeMemberBean gradeMember = dao.selectGradeById(id);
+		return gradeMember;
+	}
+	
+	@Override
 	public int getCount() {
 		// R 카운트 조회(개수)
 		return dao.count();		
 	}
-
+	
 	@Override
 	public void getCountByName() {
 		// R 이름조회시 카운트 조회

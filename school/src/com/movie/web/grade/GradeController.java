@@ -18,13 +18,25 @@ public class GradeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("인덱스에서 들어옴");
+		GradeBean grade = new GradeBean();
+		GradeService service = new GradeServiceImpl();
+		
 		String path = request.getServletPath();
 		String directory = path.split("/")[1];
 		String action = path.split("/")[2].split("\\.")[0];
+		
+		Command command = new Command();
 
-		Command command = CommandFactory.createCommand(directory, action);
+		switch (action) {
+		case "my_grade":
+			System.out.println("==내 점수 보기==");
+			request.setAttribute("score", service.getGradeById(request.getParameter("id")));
+			command = CommandFactory.createCommand(directory, action);
+			break;
 
+		default:
+			break;
+		}
 		System.out.println("디렉토리 : " + directory);
 		System.out.println("오픈될 페이지 : " + command.getView());
 
