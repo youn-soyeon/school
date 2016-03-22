@@ -16,20 +16,20 @@
 					<div class="form-group">
 						<label for="input_name" class="col-sm-4 control-label">이름</label>
 					 	<div class="col-sm-4">
-					 	<input type="text" class="form-control" id="id" name="id" value="${member.name }" readonly="readonly"/>
+					 	<input type="text" class="form-control" id="name" name="name" value="${member.name }" readonly="readonly"/>
 							
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="input_name" class="col-sm-4 control-label">주소</label>
 					 	<div class="col-sm-4">
-					 	<input type="text" class="form-control" id="id" name="id" value="${member.addr }" readonly="readonly"/>
+					 	<input type="text" class="form-control" id="addr" name="addr" value="${member.addr }" readonly="readonly"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="input_name" class="col-sm-4 control-label">생년월일</label>
 					 	<div class="col-sm-4">
-					 	<input type="text" class="form-control" id="id" name="id" value="${member.birth }" readonly="readonly"/>
+					 	<input type="text" class="form-control" id="birth" name="birth" value="${member.birth }" readonly="readonly"/>
 						</div>
 					</div>
 					
