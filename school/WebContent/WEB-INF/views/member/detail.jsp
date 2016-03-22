@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="../global/header.jsp"/>
-
+	<div class="mg_auto" style="width:1000px;">
 		<table border="1">
 		<tr>
 			<td rowspan="4"></td>
@@ -36,8 +36,14 @@
 			<td><input type="date" name="birth" /></td>
 		</tr>
 	</table>
-	<form action="${context }/global/main.do">
-		<input type="submit" value="로그아웃" />
-	</form>   
-
+	<div>
+		<form action="${context }/grade/my_grade.do">
+			<input type="submit" value="내 성적 보기" />
+		</form>
+		<form action="${context }/global/main.do">
+			<input type="submit" value="로그아웃" />
+		</form>   
+	</div>
+	
+</div>
 <jsp:include page="../global/footer.jsp"/>

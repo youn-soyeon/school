@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:include page="../global/header.jsp"/>
+	<div class="mg_auto" style="width:1000px;">
 	<div>
 		<h2>로그인</h2>
 		<!--  -->
@@ -33,5 +34,10 @@
 		<h4>아이디가 없으면, 계정을 생성하시오</h4>
 		<a href="${context }/member/join_form.do">회원가입</a>
 	</div>
-	
+<br/>
+	<div>
+		<h4>관리자 페이지로 이동합니다</h4>
+		<a href="${context }/member/admin.do">관리자 페이지</a>
+	</div>
+	</div>
 <jsp:include page="../global/footer.jsp"/>
