@@ -13,7 +13,7 @@ import com.movie.web.global.Command;
 import com.movie.web.global.CommandFactory;
 
 @WebServlet({ "/member/login_form.do", "/member/join_form.do", "/member/join.do", "/member/login.do",
-		"/member/admin.do" })
+		"/member/admin.do", "/member/update_form.do" })
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,8 +32,7 @@ public class MemberController extends HttpServlet {
 
 		switch (action) {
 		case "join":
-			String id = request.getParameter("id");
-			System.out.println("아이디 : " + id);
+			
 			break;
 		case "login":
 			System.out.println("==로그인==");
@@ -48,6 +47,11 @@ public class MemberController extends HttpServlet {
 			} else {
 				command = CommandFactory.createCommand(directory, "login_form");				
 			}
+			break;
+		case "update_form":
+			System.out.println("==수정 폼으로 진입==");
+			request.setAttribute("member", service.detail(request.getParameter("id")));
+			command = CommandFactory.createCommand(directory, action);
 			break;
 
 		default:
