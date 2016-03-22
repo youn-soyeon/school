@@ -15,7 +15,7 @@
 <header style="width: 100%; margin: 0 auto"></header>
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
-		<h3 style="color: white"; text-align: center;>
+		<h3 style="color: white; text-align: center;">
 			<a href="${context }/global/main.do">한빛 성적 관리</a>
 		</h3>
 	</div>
