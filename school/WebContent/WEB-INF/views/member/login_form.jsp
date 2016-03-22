@@ -11,7 +11,7 @@
 			<img src="${context}/img/member/heart.png" border="0" height="160px" width="300px"/>
 		</div>
 		<br />
-		<form action="${context}/member/login.do" method="post" name="loginForm" class="form-horizontal">
+		<form action="${context}/member/login.do" name="loginForm" class="form-horizontal">
 		<div class="loginCenter row" style="margin-left: 43.5%;">
 				<fieldset class="loginField">
 					<div class="form-group">
