@@ -2,19 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="context" value="<%=request.getContextPath()%>"></c:set>
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<title>내 정보 보기 폼</title>
-</head>
-<body>
+<jsp:include page="../global/header.jsp"/>
 
-	<form action="${context }/global/main.do">
-		<input type="submit" value="로그아웃" />
-	</form>   
-
-	<table border="1">
+		<table border="1">
 		<tr>
 			<td rowspan="4"></td>
 			<td>
@@ -48,6 +38,8 @@
 			<td><input type="date" name="birth" /></td>
 		</tr>
 	</table>
+	<form action="${context }/global/main.do">
+		<input type="submit" value="로그아웃" />
+	</form>   
 
-</body>
-</html>
+<jsp:include page="../global/footer.jsp"/>
