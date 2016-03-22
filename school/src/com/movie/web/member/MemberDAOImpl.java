@@ -15,15 +15,17 @@ public class MemberDAOImpl implements MemberDAO {
 	private PreparedStatement pstmt; // 쿼리 전송 객체2
 	private ResultSet rs; // 리턴값 회수 객체
 
+	public MemberDAOImpl() {
+		// 생성자(초기화) - 데이터베이스의 서비스
+		
+	}
+	
 	@Override
 	public String insert(MemberBean member) {
 		// 회원가입
 		String tempStr = "데이터 등록에 실패하였습니다.";
 		try {
-			Class.forName(Constants.MSSQL_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
 			stmt = conn.createStatement();
-
 			rs = pstmt.executeQuery("INSERT INTO Member(id, password, name, addr, birth) VALUES(?,?,?,?,?)");
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPassword());
@@ -46,8 +48,6 @@ public class MemberDAOImpl implements MemberDAO {
 		// 
 		MemberBean temp = new MemberBean();
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM Member WHERE id = '" + id + "' AND password = '" + password + "'");
 			while (rs.next()) {
@@ -74,8 +74,6 @@ public class MemberDAOImpl implements MemberDAO {
 		// 회원조회(id)
 		MemberBean temp = new MemberBean();
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM Member WHERE id = '" + id + "'");
 			while (rs.next()) {
@@ -111,8 +109,6 @@ public class MemberDAOImpl implements MemberDAO {
 		boolean isMember = false;
 //		String tempId = "";
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM Member WHERE id = '" + id + "'");
 			if(rs.next() == true) {
