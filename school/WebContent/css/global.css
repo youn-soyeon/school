@@ -40,3 +40,5 @@ input[type=password]:focus {background-color: lightblue}
 
 /* 이미지 입력 */
 /* background-image: url('*.png'); */
+
+.w_100pct{width: 100%}
