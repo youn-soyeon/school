@@ -9,7 +9,7 @@ public class Separator {
 		path = request.getServletPath();
 		directory = path.split("/")[1];
 		action = path.split("/")[2].split("\\.")[0];
-		String[] str = {path, directory, action};
+		String[] str = {directory, action};
 		return  str;
 	}
 }
