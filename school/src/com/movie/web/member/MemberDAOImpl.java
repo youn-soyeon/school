@@ -35,8 +35,8 @@ public class MemberDAOImpl implements MemberDAO {
 		try {
 			pstmt = conn.prepareStatement("INSERT INTO Member(id, name, password, addr, birth) VALUES (?, ?, ?, ?, ?)");
 			pstmt.setString(1, member.getId());
-			pstmt.setString(2, member.getPassword());
-			pstmt.setString(3, member.getName());
+			pstmt.setString(2, member.getName());
+			pstmt.setString(3, member.getPassword());
 			pstmt.setString(4, member.getAddr());
 			pstmt.setInt(5, member.getBirth());
 			// insert문을 수행하고나면 return되는 값은 숫자임
