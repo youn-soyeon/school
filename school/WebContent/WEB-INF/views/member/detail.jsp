@@ -36,6 +36,7 @@
 					
 					<div class="input_button text-center">
 						<input type="submit" id="updateButton" class="btn btn-primary" value ="수정 폼으로 이동"/>
+						<input type="submit" formaction="${context }/member/delete.do" id="deleteButton" class="btn btn-primary" value ="회원 탈퇴"/>
 						<input type="hidden" id="id" name="id" class="btn btn-primary" value ="${member.id }"/>
 					</div>
 				</fieldset>

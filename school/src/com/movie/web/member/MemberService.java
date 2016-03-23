@@ -29,11 +29,11 @@ public interface MemberService {
 	/**
 	 * 회원정보수정
 	 * */
-	public String update(MemberBean member);
+	public int update(MemberBean member);
 	/**
 	 * 회원탈퇴
 	 * */
-	public String remove(String id, String password);
+	public int remove(String id);
 	/**
 	 * id 존재 여부 체크
 	 * */

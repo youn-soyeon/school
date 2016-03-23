@@ -1,7 +1,6 @@
 package com.movie.web.member;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -98,22 +97,44 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void update(MemberBean member) {
-		// TODO Auto-generated method stub
+	public int update(MemberBean member) {
+		// 회원 정보 수정
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement("UPDATE Member SET password = ?, addr = ? WHERE id = ?");
+			pstmt.setString(1, member.getPassword());
+			pstmt.setString(2, member.getAddr());
+			pstmt.setString(3, member.getId());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("update()에서 에러 발생");
+			e.printStackTrace();
+		}
+		System.out.println("정보수정 성공여부 : " + result);
+		return result;
 
 	}
 
 	@Override
-	public void delete(String id, String password) {
-		// TODO Auto-generated method stub
-
+	public int delete(String id) {
+		// 회원 탈퇴
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement("DELETE FROM Member WHERE id = ?");
+			pstmt.setString(1, id);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("delete()에서 에러 발생");
+			e.printStackTrace();
+		}
+		System.out.println("회원탈퇴 성공여부 : " + result);
+		return result;
 	}
 
 	@Override
 	public boolean isMember(String id) {
 		// id 존재 여부 체크
 		boolean isMember = false;
-//		String tempId = "";
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM Member WHERE id = '" + id + "'");

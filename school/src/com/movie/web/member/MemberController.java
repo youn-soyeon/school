@@ -2,7 +2,6 @@ package com.movie.web.member;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +14,7 @@ import com.movie.web.global.DispatcherServlet;
 import com.movie.web.global.Separator;
 
 @WebServlet({ "/member/login_form.do", "/member/join_form.do", "/member/join.do", "/member/login.do",
-		"/member/admin.do", "/member/update_form.do", "/member/update.do" })
+		"/member/admin.do", "/member/update_form.do", "/member/update.do", "/member/delete.do" })
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MemberService service = MemberServiceImpl.getInstance();
@@ -48,7 +47,14 @@ public class MemberController extends HttpServlet {
 			request.setAttribute("member", service.detail(request.getParameter("id")));
 			command = CommandFactory.createCommand(directory, action);
 			break;
-
+		case "delete":
+			if (service.remove(request.getParameter("id")) == 1) {
+				command = CommandFactory.createCommand(directory, "login_form");
+			} else {
+				request.setAttribute("member", service.remove(request.getParameter("id")));
+				command = CommandFactory.createCommand(directory, "detail");
+			}
+			break;
 		default:
 			command = CommandFactory.createCommand(directory, action);
 			break;
@@ -58,9 +64,6 @@ public class MemberController extends HttpServlet {
 		System.out.println("오픈될 페이지 : " + command.getView());
 
 		DispatcherServlet.dispatcher(request, response, command.getView());
-		// RequestDispatcher dis =
-		// request.getRequestDispatcher(command.getView());
-		// dis.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -85,6 +88,7 @@ public class MemberController extends HttpServlet {
 			}
 			break;
 		case "join":
+			System.out.println("==회원 가입==");
 			member.setId(request.getParameter("id"));
 			member.setName(request.getParameter("name"));
 			member.setPassword(request.getParameter("password"));
@@ -97,12 +101,21 @@ public class MemberController extends HttpServlet {
 				command = CommandFactory.createCommand(directory, "join_form");
 			}
 			break;
-		case "update_form":
-			System.out.println("==수정 폼으로 진입==");
-			request.setAttribute("member", service.detail(request.getParameter("id")));
-			command = CommandFactory.createCommand(directory, action);
-			break;
 		case "update":
+			System.out.println("==정보 수정==");
+			member.setId(request.getParameter("id"));
+			member.setName(request.getParameter("name"));
+			member.setPassword(request.getParameter("password"));
+			member.setAddr(request.getParameter("addr"));
+			member.setBirth(Integer.parseInt(request.getParameter("birth").replaceAll("-", "")));
+
+			if (service.update(member) != 0) {
+				request.setAttribute("member", service.detail(request.getParameter("id")));
+				command = CommandFactory.createCommand(directory, "detail");
+			} else {
+				request.setAttribute("member", service.detail(request.getParameter("id")));
+				command = CommandFactory.createCommand(directory, "update_form");
+			}
 			break;
 
 		default:
@@ -114,8 +127,5 @@ public class MemberController extends HttpServlet {
 		System.out.println("오픈될 페이지 : " + command.getView());
 
 		DispatcherServlet.dispatcher(request, response, command.getView());
-		// RequestDispatcher dis =
-		// request.getRequestDispatcher(command.getView());
-		// dis.forward(request, response);
 	}
 }
