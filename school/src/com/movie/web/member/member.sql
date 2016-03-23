@@ -35,3 +35,7 @@ WHERE id = 'kim' and password = '1';
 
 DELETE FROM Member
 WHERE id = 'choi';
+
+UPDATE Member
+SET password = 1, addr = '대구'
+WHERE id='choi';
