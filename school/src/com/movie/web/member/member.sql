@@ -28,7 +28,7 @@ SELECT * FROM Member;
 SELECT * FROM Member
 WHERE id = 'kim';
 
-DROP TABLE Member;
+DROP TABLE Member CASCADE CONSTRAINT;
 
 SELECT * FROM Member
 WHERE id = 'kim' and password = '1';
@@ -39,3 +39,4 @@ WHERE id = 'choi';
 UPDATE Member
 SET password = 1, addr = '대구'
 WHERE id='choi';
+

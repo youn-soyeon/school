@@ -6,7 +6,7 @@
 CREATE OR REPLACE VIEW GradeMember
 AS
 SELECT 
-	g.hak as hak,
+	g.score_seq as score_seq,
 	g.id as id,
 	g.java as java,
 	g.sql as sql,
@@ -23,6 +23,9 @@ SELECT * FROM GradeMember;
 
 SELECT * FROM GradeMember
 WHERE name = '김유신';
+
+SELECT * FROM GradeMember
+WHERE id = 'hong';
 
 DROP VIEW GradeMember;
 

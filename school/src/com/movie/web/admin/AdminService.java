@@ -2,6 +2,7 @@ package com.movie.web.admin;
 
 import java.util.List;
 
+import com.movie.web.grade.GradeBean;
 import com.movie.web.grade.GradeMemberBean;
 import com.movie.web.member.MemberBean;
 
@@ -11,7 +12,9 @@ import com.movie.web.member.MemberBean;
  * @date 2016. 3. 23.
  * @story
  */
-public interface AdminSevrice {
+public interface AdminService {
 	public List<MemberBean> getMemberList();
-	public int addScore(GradeMemberBean bean);
+	public List<GradeMemberBean> getGradeMemberList();
+	public int addScore(GradeBean bean);
+	public List<GradeBean> getGradeListById(String id);
 }
