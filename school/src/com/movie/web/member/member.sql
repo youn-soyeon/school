@@ -32,3 +32,6 @@ DROP TABLE Member;
 
 SELECT * FROM Member
 WHERE id = 'kim' and password = '1';
+
+DELETE FROM Member
+WHERE id = 'choi';
