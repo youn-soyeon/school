@@ -2,7 +2,7 @@ package com.movie.web.grade;
 
 public class GradeMemberBean {
 	private String id, password, name, addr;
-	private int hak, java, sql, jsp, spring, birth; // 생년월일은 800101 처럼 숫자만 입력
+	private int scoreSeq, java, sql, jsp, spring, birth; // 생년월일은 800101 처럼 숫자만 입력
 
 	public GradeMemberBean() {}
 	
@@ -49,12 +49,12 @@ public class GradeMemberBean {
 		this.addr = addr;
 	}
 
-	public int getHak() {
-		return hak;
+	public int getScoreSeq() {
+		return scoreSeq;
 	}
 
-	public void setHak(int hak) {
-		this.hak = hak;
+	public void setScoreSeq(int scoreSeq) {
+		this.scoreSeq = scoreSeq;
 	}
 
 	public int getJava() {
@@ -100,7 +100,7 @@ public class GradeMemberBean {
 	@Override
 	public String toString() {
 		return "조회(학번) [아이디=" + id + ", 비밀번호=" + password + ", 이름=" + name + ", 주소=" + addr + ", 학번="
-				+ hak + ", 자바=" + java + ", SQL=" + sql + ", JSP=" + jsp + ", 스프링=" + spring + ", 생년월일=" + birth
+				+ scoreSeq + ", 자바=" + java + ", SQL=" + sql + ", JSP=" + jsp + ", 스프링=" + spring + ", 생년월일=" + birth
 				+ "]" + "\n";
 	}
 }

@@ -31,9 +31,9 @@ public class GradeServiceImpl implements GradeService{
 	}
 
 	@Override
-	public GradeMemberBean getGradeByHak(int hak) {
+	public GradeMemberBean getGradeByScoreSeq(int scoreSeq) {
 		// R 성적표 조회(학번)
-		return dao.selectGradeByHak(hak);
+		return dao.selectGradeByScoreSeq(scoreSeq);
 	}
 
 	@Override
@@ -66,8 +66,8 @@ public class GradeServiceImpl implements GradeService{
 		// U 성적표 수정
 		
 		String temp = "수정 실패";
-//		if(gradeList.contains(getGradeByHak(grade.getHak()))){
-//			GradeBean searchedGrade = getGradeByHak(grade.getHak());
+//		if(gradeList.contains(getGradeByScoreSeq(grade.getScoreSeq()))){
+//			GradeBean searchedGrade = getGradeByScoreSeq(grade.getScoreSeq());
 //			searchedGrade.setJava(grade.getJava());
 //			searchedGrade.setSql(grade.getSql());
 //			searchedGrade.setJsp(grade.getJsp());
@@ -77,7 +77,7 @@ public class GradeServiceImpl implements GradeService{
 //			temp = "수정 성공";
 //		}
 		/*
-		this.delete(grade.getHak());
+		this.delete(grade.getScoreSeq());
 		this.input(grade);
 		*/
 		
@@ -85,9 +85,9 @@ public class GradeServiceImpl implements GradeService{
 	}
 
 	@Override
-	public String delete(int hak) {
+	public String delete(int scoreSeq) {
 		// D 성적표 삭제
-		return (gradeList.remove(this.getGradeByHak(hak))) ? "삭제 성공" : "삭제 실패";
+		return (gradeList.remove(this.getGradeByScoreSeq(scoreSeq))) ? "삭제 성공" : "삭제 실패";
 	}
 
 }

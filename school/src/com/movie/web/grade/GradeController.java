@@ -19,7 +19,6 @@ public class GradeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		GradeBean grade = new GradeBean();
 		String path = request.getServletPath();
 		String directory = path.split("/")[1];
 		String action = path.split("/")[2].split("\\.")[0];

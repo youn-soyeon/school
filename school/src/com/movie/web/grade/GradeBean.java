@@ -2,13 +2,21 @@ package com.movie.web.grade;
 
 public class GradeBean {
 	private String id;
-	private int hak, java, sql, jsp, spring;
+	private int scoreSeq, java, sql, jsp, spring;
 	
 	//생성자 오버로딩
 	public GradeBean() {}
 
-	public GradeBean(int hak, String id, int java, int sql, int jsp, int spring) {
-		this.hak = hak;
+	public GradeBean(String id, int java, int sql, int jsp, int spring) {
+		this.id = id;
+		this.java = java;
+		this.sql = sql;
+		this.jsp = jsp;
+		this.spring = spring;
+	}
+		
+	public GradeBean(int scoreSeq, String id, int java, int sql, int jsp, int spring) {
+		this.scoreSeq = scoreSeq;
 		this.id = id;
 		this.java = java;
 		this.sql = sql;
@@ -24,12 +32,12 @@ public class GradeBean {
 		this.id = id;
 	}
 
-	public int getHak() {
-		return hak;
+	public int getScoreSeq() {
+		return scoreSeq;
 	}
 
-	public void setHak(int hak) {
-		this.hak = hak;
+	public void setScoreSeq(int scoreSeq) {
+		this.scoreSeq = scoreSeq;
 	}
 
 	public int getJava() {
@@ -66,7 +74,7 @@ public class GradeBean {
 
 	@Override
 	public String toString() {
-		return "성적표 [아이디=" + id + ", 학번=" + hak + ", 자바=" + java + ", SQL=" + sql + ", JSP=" + jsp
-				+ ", 스프링=" + spring + "]";
+		return "성적표 [아이디=" + id + ", 학번=" + scoreSeq + ", 자바=" + java + ", SQL=" + sql + ", JSP=" + jsp
+				+ ", 스프링=" + spring + "] +\n";
 	}
 }

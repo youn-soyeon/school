@@ -1,7 +1,6 @@
 package com.movie.web.grade;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -36,7 +35,7 @@ public class GradeDAOImpl implements GradeDAO {
 	public String insert(GradeMemberBean bean) {
 		String tempStr = "데이터 등록에 실패하였습니다.";
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO Grade(hak, id, java, sql, jsp, spring) VALUES(hak.NEXTVAL,?,?,?,?,?)");
+			pstmt = conn.prepareStatement("INSERT INTO Grade(scoreSeq, id, java, sql, jsp, spring) VALUES(scoreSeq.NEXTVAL,?,?,?,?,?)");
 			pstmt.setString(1, bean.getId());
 			pstmt.setInt(2, bean.getJava());
 			pstmt.setInt(3, bean.getSql());
@@ -66,7 +65,7 @@ public class GradeDAOImpl implements GradeDAO {
 				bean.setPassword(rs.getString("password"));
 				bean.setAddr(rs.getString("addr"));
 				bean.setBirth(rs.getInt("birth"));
-				bean.setHak(rs.getInt("hak"));
+				bean.setScoreSeq(rs.getInt("scoreSeq"));
 				bean.setJava(rs.getInt("java"));
 				bean.setSql(rs.getInt("sql"));
 				bean.setJsp(rs.getInt("jsp"));
@@ -82,19 +81,19 @@ public class GradeDAOImpl implements GradeDAO {
 	}
 
 	@Override
-	public GradeMemberBean selectGradeByHak(int hak) {
+	public GradeMemberBean selectGradeByScoreSeq(int scoreSeq) {
 		// R 성적표 조회(학번)
 		GradeMemberBean bean = new GradeMemberBean();
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM GradeMember WHERE hak = '" + hak + "'");
+			rs = stmt.executeQuery("SELECT * FROM GradeMember WHERE scoreSeq = '" + scoreSeq + "'");
 			while (rs.next()) {
 				bean.setId(rs.getString("id"));
 				bean.setName(rs.getString("name"));
 				bean.setPassword(rs.getString("password"));
 				bean.setAddr(rs.getString("addr"));
 				bean.setBirth(rs.getInt("birth"));
-				bean.setHak(rs.getInt("hak"));
+				bean.setScoreSeq(rs.getInt("scoreSeq"));
 				bean.setJava(rs.getInt("java"));
 				bean.setSql(rs.getInt("sql"));
 				bean.setJsp(rs.getInt("jsp"));
@@ -123,7 +122,7 @@ public class GradeDAOImpl implements GradeDAO {
 				bean.setPassword(rs.getString("password"));
 				bean.setAddr(rs.getString("addr"));
 				bean.setBirth(rs.getInt("birth"));
-				bean.setHak(rs.getInt("hak"));
+				bean.setScoreSeq(rs.getInt("scoreSeq"));
 				bean.setJava(rs.getInt("java"));
 				bean.setSql(rs.getInt("sql"));
 				bean.setJsp(rs.getInt("jsp"));
@@ -151,7 +150,7 @@ public class GradeDAOImpl implements GradeDAO {
 				bean.setPassword(rs.getString("password"));
 				bean.setAddr(rs.getString("addr"));
 				bean.setBirth(rs.getInt("birth"));
-				bean.setHak(rs.getInt("hak"));
+				bean.setScoreSeq(rs.getInt("scoreSeq"));
 				bean.setJava(rs.getInt("java"));
 				bean.setSql(rs.getInt("sql"));
 				bean.setJsp(rs.getInt("jsp"));
@@ -192,13 +191,13 @@ public class GradeDAOImpl implements GradeDAO {
 	}
 
 	@Override
-	public String delete(int hak) {
-		String tempStr = hak + "의 데이터 삭제에 실패했습니다.";
+	public String delete(int scoreSeq) {
+		String tempStr = scoreSeq + "의 데이터 삭제에 실패했습니다.";
 		try {
-			pstmt = conn.prepareStatement("DELETE FROM GradeMember WHERE = '" + hak + "'");
+			pstmt = conn.prepareStatement("DELETE FROM GradeMember WHERE = '" + scoreSeq + "'");
 			pstmt.executeUpdate();
 			while (rs.next()) {
-				tempStr = hak + "의 데이터를 성공적으로 삭제했습니다.";
+				tempStr = scoreSeq + "의 데이터를 성공적으로 삭제했습니다.";
 			}
 		} catch (Exception e) {
 			System.out.println("count()에서 에러 발생");

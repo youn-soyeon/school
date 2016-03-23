@@ -50,4 +50,6 @@ public class MemberServiceImpl implements MemberService {
 		// id 존재 여부 체크
 		return dao.isMember(id);
 	}
+	
+	
 }

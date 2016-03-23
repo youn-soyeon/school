@@ -19,7 +19,7 @@ public class GradeMain {
 				break;
 			case 2: 
 				System.out.println("수정하려는 성적표의 학번, java, sql, jsp, spring 점수를 입력하세요 > ");
-				int hak = s.nextInt();
+				int scoreSeq = s.nextInt();
 				break;
 			case 3: // o
 				System.out.println("삭제하려는 학번을 입력하세요 > ");
@@ -35,7 +35,7 @@ public class GradeMain {
 				break;
 			case 6: // o
 				System.out.println("조회하려는 학번을 입력하세요 > ");
-				System.out.println(service.getGradeByHak(s.nextInt()));
+				System.out.println(service.getGradeByScoreSeq(s.nextInt()));
 				break;
 			case 7: // o
 				System.out.println("총 회원수 : " + service.getCount());

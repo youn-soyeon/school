@@ -3,7 +3,6 @@ package com.movie.web.admin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +10,8 @@ import java.util.List;
 import com.movie.web.global.Constants;
 import com.movie.web.global.DatabaseFactory;
 import com.movie.web.global.Vendor;
+import com.movie.web.grade.GradeBean;
+import com.movie.web.grade.GradeMemberBean;
 import com.movie.web.member.MemberBean;
 
 public class AdminDAOImpl implements AdminDAO {
@@ -33,11 +34,11 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<MemberBean> selectAllMember() {
 		// 전체 회원 정보 보기
 		List<MemberBean> memberList = new ArrayList<MemberBean>();
-		MemberBean tempBean = new MemberBean();
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM Member");
 			while (rs.next()) {
+				MemberBean tempBean = new MemberBean();
 				tempBean.setId(rs.getString("id"));
 				tempBean.setName(rs.getString("name"));
 				tempBean.setPassword(rs.getString("password"));
@@ -51,11 +52,77 @@ public class AdminDAOImpl implements AdminDAO {
 		}
 		return memberList;
 	}
-
+	
 	@Override
-	public void insertScore() {
-		// 학생 점수 추가하기
-
+	public List<GradeMemberBean> selectAllMemberGrade() {
+		// 학생 전체 점수 조회
+		List<GradeMemberBean> memberList = new ArrayList<GradeMemberBean>();
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM GradeMember");
+			while (rs.next()) {
+				GradeMemberBean tempBean = new GradeMemberBean();
+				tempBean.setId(rs.getString("id"));
+				tempBean.setName(rs.getString("name"));
+				tempBean.setPassword(rs.getString("password"));
+				tempBean.setAddr(rs.getString("addr"));
+				tempBean.setBirth(rs.getInt("birth"));
+				tempBean.setScoreSeq(rs.getInt("scoreSeq"));
+				tempBean.setJava(rs.getInt("java"));
+				tempBean.setSql(rs.getInt("sql"));
+				tempBean.setJsp(rs.getInt("jsp"));
+				tempBean.setSpring(rs.getInt("spring"));
+				memberList.add(tempBean);
+			}
+		} catch (Exception e) {
+			System.out.println("selectAllMember()에서 에러 발생");
+			e.printStackTrace();
+		}
+		return memberList;
 	}
 
+	@Override
+	public int insertScore(GradeBean grade) {
+		// 학생 점수 추가하기
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement("INSERT INTO Grade(score_seq, id, java, sql, jsp, spring) VALUES (score_seq.NEXTVAL, ?, ?, ?, ?, ?)");
+			pstmt.setString(1, grade.getId());
+			pstmt.setInt(2, grade.getJava());
+			pstmt.setInt(3, grade.getSql());
+			pstmt.setInt(4, grade.getJsp());
+			pstmt.setInt(5, grade.getSpring());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("insertScore()에서 에러 발생");
+			e.printStackTrace();
+		}
+		System.out.println("학생 점수 추가 결과 : " + result);
+		return result;
+	}
+
+	@Override
+	public List<GradeBean> selectGradeById(String id) {
+		// id로 특정 학생의 점수 조회하기
+		List<GradeBean> gradeBeanList = new ArrayList<GradeBean>();
+		try {
+			pstmt = conn.prepareStatement("SELECT * FROM Grade WHERE id = ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				GradeBean tempBean = new GradeBean();
+				tempBean.setId(rs.getString("id"));
+				tempBean.setJava(rs.getInt("java"));
+				tempBean.setSql(rs.getInt("sql"));
+				tempBean.setJsp(rs.getInt("jsp"));
+				tempBean.setSpring(rs.getInt("spring"));
+				gradeBeanList.add(tempBean);
+			}
+		} catch (Exception e) {
+			System.out.println("selectGradeById()에서 에러 발생");
+			e.printStackTrace();
+		}
+		System.out.println("학생 점수 추가 결과 : ");
+		return gradeBeanList;
+	}
 }

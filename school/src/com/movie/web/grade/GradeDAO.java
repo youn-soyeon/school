@@ -8,7 +8,7 @@ public interface GradeDAO { // DAO : data access object
 	// R 성적표 리스트 출력
 	public List<GradeMemberBean> selectAll();
 	// R 성적표 조회(학번)
-	public GradeMemberBean selectGradeByHak(int hak);
+	public GradeMemberBean selectGradeByScoreSeq(int scoreSeq);
 	// R 성적표 조회(이름)
 	public List<GradeMemberBean> selectGradesByName(String name);
 	// R 성적표 조회(id)
@@ -18,5 +18,5 @@ public interface GradeDAO { // DAO : data access object
 	// U 성적표 수정
 	public String update(GradeBean grade);
 	// D 성적표 삭제
-	public String delete(int hak);
+	public String delete(int scoreSeq);
 }
