@@ -16,6 +16,12 @@ public class MemberDAOImpl implements MemberDAO {
 	private Statement stmt; // 쿼리 전송 객체
 	private PreparedStatement pstmt; // 쿼리 전송 객체2
 	private ResultSet rs; // 리턴값 회수 객체
+	private static MemberDAO instance = new MemberDAOImpl(); // 불가피하게 초기화
+	
+	public static MemberDAO getInstance() {
+		// 만들어진 것 가져와서 사용 = singleton 패턴
+		return instance;
+	}
 
 	public MemberDAOImpl() {
 		// 생성자(초기화)
@@ -23,26 +29,24 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	@Override
-	public String insert(MemberBean member) {
+	public int insert(MemberBean member) {
 		// 회원가입
-		String tempStr = "데이터 등록에 실패하였습니다.";
+		int result = 0;
 		try {
-			stmt = conn.createStatement();
-			rs = pstmt.executeQuery("INSERT INTO Member(id, password, name, addr, birth) VALUES(?,?,?,?,?)");
+			pstmt = conn.prepareStatement("INSERT INTO Member(id, name, password, addr, birth) VALUES (?, ?, ?, ?, ?)");
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPassword());
 			pstmt.setString(3, member.getName());
 			pstmt.setString(4, member.getAddr());
 			pstmt.setInt(5, member.getBirth());
-			
-			pstmt.executeQuery();
-
-			tempStr = "데이터 등록에 성공하였습니다.";
+			// insert문을 수행하고나면 return되는 값은 숫자임
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("insert()에서 에러 발생");
 			e.printStackTrace();
 		}
-		return tempStr;
+		System.out.println("회원가입 성공여부 : " + result);
+		return result;
 	}
 
 	@Override
@@ -50,7 +54,7 @@ public class MemberDAOImpl implements MemberDAO {
 		// 
 		MemberBean temp = new MemberBean();
 		try {
-			stmt = conn.createStatement();
+			stmt = conn.createStatement(); // 내부적으로 Factory 패턴 사용
 			rs = stmt.executeQuery("SELECT * FROM Member WHERE id = '" + id + "' AND password = '" + password + "'");
 			while (rs.next()) {
 				temp.setId(rs.getString("id"));

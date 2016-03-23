@@ -11,8 +11,8 @@ public class MemberMain {
 			System.out.println("[메뉴] 1.가입 2.로그인 3.내정보보기 4.내정보수정 5.탈퇴 0.종료");
 			switch (s.nextInt()) {
 			case 1:
-				System.out.println("[회원가입] 아이디, 비밀번호, 이름, 주소, 생년월일을 입력하세요 > ");
-				System.out.println(service.join(new MemberBean(s.next(), s.next(), s.next(), s.next(), s.nextInt()))); 
+				System.out.println("[회원가입] 아이디, 이름, 비밀번호, 주소, 생년월일을 입력하세요 > ");
+				System.out.println("Main의 회원 가입 결과" + service.join(new MemberBean(s.next(), s.next(), s.next(), s.next(), s.nextInt()))); 
 				break;
 			case 2: 
 				System.out.println("[로그인] 아이디와 비밀번호를 입력하세요 > ");

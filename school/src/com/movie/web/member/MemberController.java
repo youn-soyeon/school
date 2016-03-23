@@ -16,19 +16,17 @@ import com.movie.web.global.CommandFactory;
 		"/member/admin.do", "/member/update_form.do" })
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	MemberService service = MemberServiceImpl.getInstance();
+	
 	// 페이지 이동시에는 doGet (파라미터 없이 return)
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("인덱스에서 들어옴");
-
-		MemberService service = new MemberServiceImpl();
+		Command command = new Command();
 		MemberBean member = new MemberBean();
 		String path = request.getServletPath();
 		String directory = path.split("/")[1];
 		String action = path.split("/")[2].split("\\.")[0];
-
-		Command command = new Command();
 
 		switch (action) {
 		case "join":

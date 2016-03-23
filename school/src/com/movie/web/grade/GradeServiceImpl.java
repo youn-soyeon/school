@@ -5,9 +5,14 @@ import java.util.List;
 
 public class GradeServiceImpl implements GradeService{
 	// 멤버 필드(속성 집합)
+	private static GradeService instance = new GradeServiceImpl();
 	ArrayList<GradeBean> gradeList;
-	GradeDAO dao = new GradeDAOImpl();
+	GradeDAO dao = GradeDAOImpl.getInstance();
 	
+	public static GradeService getInstance() {
+		return instance;
+	}
+
 	public GradeServiceImpl() {
 		gradeList = new ArrayList<GradeBean>(); // 초기화
 	}

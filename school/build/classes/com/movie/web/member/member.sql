@@ -20,6 +20,8 @@ INSERT INTO Member
 VALUES ('yoon', '윤동주', '1', '인천', 160201);
 INSERT INTO Member(id, name, password, addr, birth)
 VALUES ('kim2', '김유신', '1', 'LA', 851111);
+INSERT INTO Member(id, name, password, addr, birth)
+VALUES ('yu', '유아인', '1', '강릉', 920505);
 
 SELECT * FROM Member;
 

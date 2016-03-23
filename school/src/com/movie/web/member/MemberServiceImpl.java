@@ -4,27 +4,27 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class MemberServiceImpl implements MemberService {
+	private static MemberService instance = new MemberServiceImpl();
 	HashMap<String, MemberBean> map;
-	MemberDAO dao = new MemberDAOImpl();
-
+	MemberDAO dao = MemberDAOImpl.getInstance();
+	
 	public MemberServiceImpl() {
 		map = new HashMap<String, MemberBean>();
 	}
+	
+	public static MemberService getInstance() {
+		return instance;
+	}
 
 	@Override
-	public String join(MemberBean member) {
+	public int join(MemberBean member) {
 		// 회원가입
-		String joinResult = "[실패] 가입에 실패하였습니다.";
-		map.put(member.getId(), member);
-		if (map.size() != 0) {
-			joinResult = "[성공] 가입해주셔서 감사합니다.";
-		}
-		return joinResult;
+		return dao.insert(member);
 	}
 
 	@Override
 	public MemberBean login(String id, String password) {
-		// 회원 로그인
+		// 회원 로그인 :
 		// 아이디가 존재하지 않아서 실패한 경우와 비밀번호가 틀려서 실패한 경우에 따라서
 		// 메시지를 전달해줘야 한다.
 		MemberBean member = dao.selectById(id, password);

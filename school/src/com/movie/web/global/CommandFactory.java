@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  * @file : CommandFactory.java
  * @author sssoyeon92@naver.com
  * @date 2016. 3. 21.
- * @story
+ * @story Factory 이름 붙인 이유 : 생성자를 통해 객체를 만드는 공장
  */
 public class CommandFactory {
 	public static Command getCommand(HttpServletRequest request, HttpServletResponse response)

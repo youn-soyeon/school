@@ -14,13 +14,12 @@ import com.movie.web.global.CommandFactory;
 
 @WebServlet({ "/grade/my_grade.do" })
 public class GradeController extends HttpServlet {
+	GradeService service = GradeServiceImpl.getInstance();
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		GradeBean grade = new GradeBean();
-		GradeService service = new GradeServiceImpl();
-		
 		String path = request.getServletPath();
 		String directory = path.split("/")[1];
 		String action = path.split("/")[2].split("\\.")[0];

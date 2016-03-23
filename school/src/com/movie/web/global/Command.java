@@ -4,7 +4,7 @@ package com.movie.web.global;
  * @file : Command.java
  * @author sssoyeon92@naver.com
  * @date 2016. 3. 21.
- * @story
+ * @story directory와 action을 받아 view를 만드는 역할을 한다.
  */
 public class Command {
 	//상속할거면 protected, 안할거면 private

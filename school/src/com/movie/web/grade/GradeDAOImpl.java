@@ -21,7 +21,12 @@ public class GradeDAOImpl implements GradeDAO {
 	private Statement stmt; // 쿼리 전송 객체
 	private PreparedStatement pstmt; // 쿼리 전송 객체2
 	private ResultSet rs; // 리턴값 회수 객체
+	private static GradeDAO instance = new GradeDAOImpl();
 	
+	public static GradeDAO getInstance() {
+		return instance;
+	}
+
 	public GradeDAOImpl() {
 		// 생성자(초기화)
 		conn = DatabaseFactory.getDatabase(Vendor.ORACLE, Constants.ID, Constants.PASSWORD).getConnection();
@@ -79,7 +84,6 @@ public class GradeDAOImpl implements GradeDAO {
 	@Override
 	public GradeMemberBean selectGradeByHak(int hak) {
 		// R 성적표 조회(학번)
-
 		GradeMemberBean bean = new GradeMemberBean();
 		try {
 			stmt = conn.createStatement();

@@ -7,7 +7,7 @@ package com.movie.web.member;
  * @story
  */
 public interface MemberDAO {
-	public String insert(MemberBean member);
+	public int insert(MemberBean member);
 	public MemberBean selectById(String id, String password);
 	public MemberBean selectMember(String id);
 	public void update(MemberBean member);

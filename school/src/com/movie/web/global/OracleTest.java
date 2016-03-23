@@ -13,13 +13,10 @@ import java.sql.Statement;
  */
 public class OracleTest {
 	public static void main(String[] args) {
-		Connection conn = null; // null 주는 이유 : 지역변수 초기화
+		Connection conn = DatabaseFactory.getDatabase(Vendor.ORACLE, Constants.ID, Constants.PASSWORD).getConnection(); // null 주는 이유 : 지역변수 초기화
 		Statement stmt = null;
 		ResultSet rs = null; // Deep Copy 방식 사용할 것임 (ResultSet은 인터페이스이므로)
-
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM Test");
 			String sample = "";
