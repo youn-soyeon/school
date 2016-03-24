@@ -18,5 +18,8 @@
 		<h3 style="color: white; text-align: center;">
 			<a href="${context }/global/main.do">한빛 성적 관리</a>
 		</h3>
+		<div>
+			
+		</div>
 	</div>
 </nav>
