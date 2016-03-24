@@ -19,8 +19,9 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MemberService service = MemberServiceImpl.getInstance();
 
-	// 페이지 이동시에는 doGet (파라미터 없이 return)
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println("인덱스에서 들어옴");
 		Command command = new Command();
 		MemberBean member = new MemberBean();
@@ -29,7 +30,7 @@ public class MemberController extends HttpServlet {
 
 		switch (action) {
 		case "login":
-			System.out.println("==로그인==");
+			System.out.println("==로그인(login)==");
 			if (service.isMember(request.getParameter("id")) == true) {
 				member = service.login(request.getParameter("id"), request.getParameter("password"));
 				if (member.getPassword() != null) {
@@ -42,53 +43,9 @@ public class MemberController extends HttpServlet {
 				command = CommandFactory.createCommand(directory, "login_form");
 			}
 			break;
-		case "update_form":
-			System.out.println("==수정 폼으로 진입==");
-			request.setAttribute("member", service.detail(request.getParameter("id")));
-			command = CommandFactory.createCommand(directory, action);
-			break;
-		case "delete":
-			if (service.remove(request.getParameter("id")) == 1) {
-				command = CommandFactory.createCommand(directory, "login_form");
-			} else {
-				request.setAttribute("member", service.remove(request.getParameter("id")));
-				command = CommandFactory.createCommand(directory, "detail");
-			}
-			break;
-		default:
-			command = CommandFactory.createCommand(directory, action);
-			break;
-		}
-
-		System.out.println("디렉토리 : " + directory);
-		System.out.println("오픈될 페이지 : " + command.getView());
-
-		DispatcherServlet.dispatcher(request, response, command.getView());
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Command command = new Command();
-		MemberBean member = new MemberBean();
-		String[] arr = Separator.doSeparate(request);
-		String directory = arr[0], action = arr[1];
-
-		switch (action) {
-		case "login":
-			System.out.println("==로그인==");
-			if (service.isMember(request.getParameter("id")) == true) {
-				member = service.login(request.getParameter("id"), request.getParameter("password"));
-				if (member.getPassword() != null) {
-					request.setAttribute("member", member);
-					command = CommandFactory.createCommand(directory, "detail");
-				} else {
-					command = CommandFactory.createCommand(directory, "login_form");
-				}
-			} else {
-				command = CommandFactory.createCommand(directory, "login_form");
-			}
-			break;
+			
 		case "join":
-			System.out.println("==회원 가입==");
+			System.out.println("==회원 가입(join)==");
 			member.setId(request.getParameter("id"));
 			member.setName(request.getParameter("name"));
 			member.setPassword(request.getParameter("password"));
@@ -101,14 +58,21 @@ public class MemberController extends HttpServlet {
 				command = CommandFactory.createCommand(directory, "join_form");
 			}
 			break;
+
+		case "update_form":
+			System.out.println("==수정 폼으로 진입(update_form)==");
+			request.setAttribute("member", service.detail(request.getParameter("id")));
+			command = CommandFactory.createCommand(directory, action);
+			break;
+
+		
 		case "update":
-			System.out.println("==정보 수정==");
+			System.out.println("==정보 수정(update)==");
 			member.setId(request.getParameter("id"));
 			member.setName(request.getParameter("name"));
 			member.setPassword(request.getParameter("password"));
 			member.setAddr(request.getParameter("addr"));
 			member.setBirth(Integer.parseInt(request.getParameter("birth").replaceAll("-", "")));
-
 			if (service.update(member) != 0) {
 				request.setAttribute("member", service.detail(request.getParameter("id")));
 				command = CommandFactory.createCommand(directory, "detail");
@@ -117,7 +81,16 @@ public class MemberController extends HttpServlet {
 				command = CommandFactory.createCommand(directory, "update_form");
 			}
 			break;
-
+			
+		case "delete":
+			System.out.println("==회원 탈퇴(delete)==");
+			if (service.remove(request.getParameter("id")) == 1) {
+				command = CommandFactory.createCommand(directory, "login_form");
+			} else {
+				request.setAttribute("member", service.remove(request.getParameter("id")));
+				command = CommandFactory.createCommand(directory, "detail");
+			}
+			break;
 		default:
 			command = CommandFactory.createCommand(directory, action);
 			break;
