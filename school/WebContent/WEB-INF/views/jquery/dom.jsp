@@ -85,20 +85,9 @@
 		},
 		selectElementsByTagName : function() {
 			$('span').css('background-color','red');
-			//var elems = $('span');
-			//for (var i = 0, elem; elem = elems[i]; i++) {
-				//elem.setAttribute('style','background: red');
-				//elem.style.backgroundColor = 'red';
-			//	$('span').css('style','background: red');
-			//}
 		},
 		selectElementsByName : function() {
 			$('.bbb').css('background-color','blue');
-			//var elems = $('.bbb');
-			//for (var i = 0, element; element = elems[i]; i++) {
-				//element.setAttribute('style','background: blue');
-				//element.style.backgroundColor = 'blue';
-			//}
 		}
 	};
 </script>

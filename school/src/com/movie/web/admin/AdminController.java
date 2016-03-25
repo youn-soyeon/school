@@ -33,6 +33,10 @@ public class AdminController extends HttpServlet {
 			System.out.println("==관리자 폼으로 진입(admin_form)==");
 			command = CommandFactory.createCommand(directory, action);
 			break;
+		case "member_list":
+			System.out.println("==관리자 폼으로 진입(admin_form)==");
+			command = CommandFactory.createCommand(directory, action);
+			break;
 		default:
 			command = CommandFactory.createCommand(directory, action);
 			break;
