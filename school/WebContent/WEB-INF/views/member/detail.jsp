@@ -5,7 +5,7 @@
 			<h2 class="text-center">회원 상세 정보</h2>
 		</div>
 		<div class="joinCenter row">
-			<form action="${context}/member/update_form.do" name="updateForm" class="form-horizontal">
+			<form>
 				<fieldset class="joinField">
 					<div class="form-group">
 					 	<label for="input_id" class="col-sm-4 control-label">아이디</label>
@@ -32,14 +32,25 @@
 					 	<input type="text" class="form-control" id="birth" name="birth" value="${member.birth }" readonly="readonly"/>
 						</div>
 					</div>
-					
-					
-					<div class="input_button text-center">
-						<input type="submit" id="updateButton" class="btn btn-primary" value ="수정 폼으로 이동"/>
-						<input type="submit" formaction="${context }/member/delete.do" id="deleteButton" class="btn btn-primary" value ="회원 탈퇴"/>
-						<input type="hidden" id="id" name="id" class="btn btn-primary" value ="${member.id }"/>
-					</div>
 				</fieldset>
 			</form>
+			<div class="input_button text-center">
+						<button id="updateFormButton">수정 폼으로 이동</button>
+						<button id="deleteButton">회원 탈퇴</button>
+					</div>
 		</div>
 	</div>
+	<script>
+		$(function() {
+			$form=$('form');
+			$form.addClass('form-horizontal');
+			//$form.addClass('form-horizontal').attr('method','post').attr('action','${context}/member/update_form.do');
+			$('#updateFormButton').addClass('btn btn-primary').click(function() {
+				$form.attr('method','post').attr('action','${context}/member/update_form.do').submit();
+			});
+			$('#deleteButton').addClass('btn btn-primary').click(function() {
+				$form.addClass('form-horizontal').attr('method','post').attr('action','${context}/member/delete.do').submit();
+				//location.href='${context}/member/delete.do?id=${member.id}';
+			});
+		});
+	</script>

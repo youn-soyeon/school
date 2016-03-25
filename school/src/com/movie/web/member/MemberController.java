@@ -73,7 +73,7 @@ public class MemberController extends HttpServlet {
 			member.setPassword(request.getParameter("password"));
 			member.setAddr(request.getParameter("addr"));
 			member.setBirth(Integer.parseInt(request.getParameter("birth").replaceAll("-", "")));
-			if (service.update(member) != 0) {
+			if (service.update(member) == 1) {
 				request.setAttribute("member", service.detail(request.getParameter("id")));
 				command = CommandFactory.createCommand(directory, "detail");
 			} else {

@@ -4,7 +4,7 @@
 <div class='container' style='margin: auto;'>
 	<div class="row display-table">
 	    <div class="col-xs-12 col-sm-4 display-cell" >
-		    <ul id="admin_sidebar" class="nav nav-pills nav-stacked">
+		    <ul class="nav nav-pills nav-stacked">
 		    	<li class="dropdown active"><a onclick="admin.memberList()">전체 학생 보기</a></li>
 		    	<li><a onclick="admin.gradeList()">전체 성적 보기</a></li>
 		    	<li><a onclick="admin.searchById()">ID로 회원 검색</a>	</li>
@@ -20,11 +20,6 @@
 <script src="${context }/resources/js/admin.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#admin_sidebar').children().first().addClass('dropdown active');
-		$('#admin_sidebar').children().click(function() {
-			$(this).addClass('dropdown active');
-			$(this).sibling().removeClass('dropdown active');
-			
-		});
+		
 	});
 </script>

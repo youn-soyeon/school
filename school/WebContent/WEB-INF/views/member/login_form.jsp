@@ -8,10 +8,9 @@
 
 	<div id="login">
 		<div class="loginTop text-center" >
-			<img src="${context}/resources/img/member/heart.png" border="0" height="160px" width="300px"/>
+			<img src="${context}/resources/img/member/heart.png" id="heart"/>
 		</div>
-		<br />
-		<form action="${context}/member/login.do" method="post" name="loginForm" class="form-horizontal">
+		<form class="form-horizontal">
 		<div class="loginCenter row" style="margin-left: 43.5%;">
 				<fieldset class="loginField">
 					<div class="form-group">
@@ -29,11 +28,21 @@
 				</fieldset>
 			
 		</div>
-		<div class="input_button text-center">
-			<input type="submit" id="loginButton" class="btn btn-primary" value ="로그인"/>
-			<input type="reset" id="joinButton" class="btn btn-primary" value ="취소"/>
-		</div>
 		</form>
+		<div class="input_button text-center">
+			<button id="loginButton">로그인</button>
+		</div>
 	</div>
 </body>
+<script>
+	$(function() {
+		
+		$('#heart').css('border','0').css('height','160px').css('width','300px');
+		$form = $('form');
+		$form.addClass('form-horizontal').attr('method','post').attr('action', '${context}/member/login.do');
+		$('#loginButton').click(function() {
+			$form.submit();
+			});
+		});
+</script>
 </html>

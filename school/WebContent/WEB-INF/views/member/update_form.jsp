@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../global/header.jsp"/>
-<div id="detail">
+<div id="update">
 		<div class="joinTop">
 			<h2 class="text-center">회원 정보 수정 페이지</h2>
 		</div>
 		<div class="joinCenter row">
-			<form action="${context}/member/update.do" method="post" name="updateForm" class="form-horizontal">
+			<form>
 				<fieldset class="joinField">
 					<div class="form-group">
 					 	<label for="input_id" class="col-sm-4 control-label">아이디</label>
@@ -37,23 +37,28 @@
 							<input type="text" class="form-control" id="birth" name="birth" value="${member.birth }" readonly="readonly"/>
 						</div>
 					</div>
-					
-					
-					<div class="input_button text-center">
-						<input type="submit" id="updateButton" class="btn btn-primary" value ="수정하기"/>
-					</div>
-
-						
 				</fieldset>
 			</form>
 			<div class="input_button text-center">
-				<form action="${context }/grade/my_grade.do?id=${member.id}">
-					<input type="hidden" name="id" value="${member.id }" />
-					<input type="submit" value="내 성적 보기" />
-				</form>
-				<form action="${context }/global/main.do">
-					<input type="submit" value="로그아웃" />
-				</form>   
+				<button id="updateButton">수정하기</button>
+				<button id="myGradeButton">내 성적 보기</button>
+				<button id="cancleButton">취소</button>
 			</div>
 		</div>
 	</div>
+	
+	<script>
+	$(function() {
+		$form = $('form');
+		$form.addClass('form-horizontal').attr('method','post').attr('action','${context}/member/update.do');
+		$('#updateButton').addClass('btn btn-primary').click(function() {
+			$form.submit();
+		});
+		$('#cancleButton').addClass('btn btn-primary').click(function() {
+			$form.reset();
+		});
+		
+	});
+	
+	
+	</script>

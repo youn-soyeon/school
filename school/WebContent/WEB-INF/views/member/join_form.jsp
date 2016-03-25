@@ -5,7 +5,9 @@
 			<h2 class="text-center">회원가입</h2>
 		</div>
 		<div class="joinCenter row">
-			<form action="${context}/member/join.do" method="post" name="joinForm" class="form-horizontal">
+			<form >
+			<!-- class="form-horizontal" -->
+			
 				<fieldset class="joinField">
 					<div class="form-group">
 					 	<label for="input_id" class="col-sm-4 control-label">아이디</label>
@@ -43,12 +45,26 @@
 							<input type="date" class="form-control" id="birth" name="birth" placeholder="생년월일을 입력하세요"/>
 						</div>
 					</div>
-					<div class="input_button text-center">
-						<input type="submit" id="joinButton" class="btn btn-primary" value ="회원가입"/>
-						<input type="reset" id="cancleButton" class="btn btn-primary" value ="취소"/>
-					</div>
-						
 				</fieldset>
 			</form>
+			<div class="input_button text-center">
+				<button id='joinButton'>회원가입</button>
+				<button id='cancelButton'>취소</button>
+					
+			</div>
 		</div>
 	</div>
+</body>
+<!-- action="${context}/member/join.do" method="post" name="joinForm"  -->
+<script>
+	$(function() {
+		$form = $('form');
+		$form.addClass('form-horizontal');
+		$('#joinButton').addClass('btn btn-primary').click(function() {
+			$form.attr('method','post').attr('action','${context}/member/join.do').submit();
+		})
+		$('#cancleButton').addClass('btn btn-primary').click(function() {
+			$form.reset();		
+		})
+	});
+</script>

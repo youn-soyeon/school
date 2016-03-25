@@ -3,14 +3,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="context" value="<%=request.getContextPath()%>"></c:set>
 <!doctype html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<title>메인화면</title>
-</head>
-<body>
-	<form action="${context}/global/main.do">
-		<input type="submit" value="홈으로" />
-	</form>
-</body>
+	<html lang="ko">
+		<head>
+			<meta charset="UTF-8" />
+			<title>인덱스 화면</title>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		</head>
+		
+		<body>
+			<img src="${context }/resources/img/main/loading.gif" id="image" alt="" style="margin-left:30%; margin-top: 50%"/>
+		</body>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+					location.href='${context}/global/main.do';
+			});
+		</script>
 </html>
