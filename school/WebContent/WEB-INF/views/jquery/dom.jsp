@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../global/header.jsp"/>
-<div class="container" style="width: 1000px; margin:0 auto">
+<div class="container" style="margin: auto">
 	<div id="outBox">
 		<h3>$('#') 의 예제</h3>
 		<button onclick="dom.show()">열기</button>
@@ -46,11 +46,11 @@
 			<h3>document.getElementsByName() 의 예제</h3>
 			<button onclick="dom.selectElementsByName()">이름으로 찾기</button>
 			<div>
-				<span name='bbb'>1번</span>
+				<span class='bbb'>1번</span>
 				<span>2번</span>
-				<span name='aaa'>3번</span>
+				<span class='aaa'>3번</span>
 				<span>4번</span>
-				<span name='bbb'>5번</span>
+				<span class='bbb'>5번</span>
 				<span>6번</span>
 			</div>
 		</div>
@@ -68,7 +68,7 @@
 		createTag1 : function() {
 			var elem = document.createElement('div');
 			var attr = document.createAttribute('style');
-			attr.nodeValue = "background: red; width: 500px; height: 100px; margin: 0 0 0 0 200px";
+			attr.nodeValue = "background: red; width: 500px; height: 100px; margin: 0 0 0 200px";
 			elem.setAttributeNode(attr);
 			$('#end_div').append(elem);
 		},
@@ -84,16 +84,21 @@
 			$('#end_div').html(elem);
 		},
 		selectElementsByTagName : function() {
-			var elems = document.getElementsByTagName('span');
-			for (var i = 0, elem; elem = elems[i]; i++) {
-				elem.style.backgroundColor = 'red';
-			}
+			$('span').css('background-color','red');
+			//var elems = $('span');
+			//for (var i = 0, elem; elem = elems[i]; i++) {
+				//elem.setAttribute('style','background: red');
+				//elem.style.backgroundColor = 'red';
+			//	$('span').css('style','background: red');
+			//}
 		},
 		selectElementsByName : function() {
-			var elems = document.getElementsByName('bbb');
-			for (var i = 0, element; element = elems[i]; i++) {
-				element.style.backgroundColor = 'blue';
-			}
+			$('.bbb').css('background-color','blue');
+			//var elems = $('.bbb');
+			//for (var i = 0, element; element = elems[i]; i++) {
+				//element.setAttribute('style','background: blue');
+				//element.style.backgroundColor = 'blue';
+			//}
 		}
 	};
 </script>

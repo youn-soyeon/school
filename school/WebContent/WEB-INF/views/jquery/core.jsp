@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../global/header.jsp" />
-<div class="container" style="width: 1000px; margin: 0 auto">
+<div class="container" style="margin: auto">
 	<h3>jQuery</h3>
 	2016년 존 레식이 제작 <br />
 	소프트웨어를 제작할 때 자주 사용되는 기능들을 쉽게 사용 할 수 있도록 <br />
