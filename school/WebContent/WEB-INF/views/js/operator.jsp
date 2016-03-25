@@ -12,14 +12,18 @@
 	    	<li><a onclick="opr.bigNum()">가장 큰 수</a>	</li>
 	    	<li><a onclick="opr.gugudan()">구구단</a></li>
 	    	<li><a onclick="opr.oddSum()">홀/짝 합계</a></li>
+	    	<li><a onclick="liveScript()">라이브 스크립트 호출</a></li>
 	    </ul>
     </div>
     <div class="col-xs-12 col-sm-8 display-cell" id="result" style="border: 1px solid black;height: 500px">
-        text
+        연산 결과
     </div>
 </div>
 </div>	
 <script type='text/javascript'>
+function liveScript(){
+	alert('라이브스크립트 시절(객체기반언어가 아닌 시절) 은 이렇게 했답니다.')
+}
 	var result = '';
 	var opr = {
 		sysout : function() {
