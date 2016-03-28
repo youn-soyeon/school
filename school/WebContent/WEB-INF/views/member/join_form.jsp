@@ -45,6 +45,28 @@
 							<input type="date" class="form-control" id="birth" name="birth" placeholder="생년월일을 입력하세요"/>
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="input_name" class="col-sm-4 control-label">전공</label>
+					 	<div class="col-sm-4">
+					 		<select name="major" id="major">
+					 			<option value="computer">컴퓨터공학</option>
+					 			<option value="info">정보통신공학</option>
+					 			<option value="security">정보보안공학</option>
+					 		</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="input_name" class="col-sm-4 control-label">수강과목</label>
+					 	<div class="col-sm-4">
+							<input type="checkbox" class="form-control" id="subject" name="subject" /> Java
+							<input type="checkbox" class="form-control" id="subject" name="subject" /> SQL
+							<input type="checkbox" class="form-control" id="subject" name="subject" /> JSP
+							<input type="checkbox" class="form-control" id="subject" name="subject" /> Spring
+							<input type="checkbox" class="form-control" id="subject" name="subject" /> Python
+							<input type="checkbox" class="form-control" id="subject" name="subject" /> Node.js
+							<input type="checkbox" class="form-control" id="subject" name="subject" /> Android
+						</div>
+					</div>
 				</fieldset>
 			</form>
 			<div class="input_button text-center">

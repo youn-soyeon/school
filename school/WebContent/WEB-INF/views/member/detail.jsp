@@ -2,7 +2,7 @@
 <jsp:include page="../global/header.jsp"/>
 <div id="detail">
 		<div class="joinTop">
-			<h2 class="text-center">회원 상세 정보</h2>
+			<h2 class="text-center">${user.name }회원 상세 정보</h2>
 		</div>
 		<div class="joinCenter row">
 			<form>
@@ -10,26 +10,26 @@
 					<div class="form-group">
 					 	<label for="input_id" class="col-sm-4 control-label">아이디</label>
 					 	<div class="col-sm-4">
-							<input type="text" class="form-control" id="id" name="id" value="${member.id }" readonly="readonly"/>
+							<input type="text" class="form-control" id="id" name="id" value="${user.id }" readonly="readonly"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="input_name" class="col-sm-4 control-label">이름</label>
 					 	<div class="col-sm-4">
-					 	<input type="text" class="form-control" id="name" name="name" value="${member.name }" readonly="readonly"/>
+					 	<input type="text" class="form-control" id="name" name="name" value="${user.name }" readonly="readonly"/>
 							
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="input_name" class="col-sm-4 control-label">주소</label>
 					 	<div class="col-sm-4">
-					 	<input type="text" class="form-control" id="addr" name="addr" value="${member.addr }" readonly="readonly"/>
+					 	<input type="text" class="form-control" id="addr" name="addr" value="${user.addr }" readonly="readonly"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="input_name" class="col-sm-4 control-label">생년월일</label>
 					 	<div class="col-sm-4">
-					 	<input type="text" class="form-control" id="birth" name="birth" value="${member.birth }" readonly="readonly"/>
+					 	<input type="text" class="form-control" id="birth" name="birth" value="${user.birth }" readonly="readonly"/>
 						</div>
 					</div>
 				</fieldset>
@@ -42,15 +42,12 @@
 	</div>
 	<script>
 		$(function() {
-			$form=$('form');
-			$form.addClass('form-horizontal');
-			//$form.addClass('form-horizontal').attr('method','post').attr('action','${context}/member/update_form.do');
+			$('form').addClass('form-horizontal');
 			$('#updateFormButton').addClass('btn btn-primary').click(function() {
-				$form.attr('method','post').attr('action','${context}/member/update_form.do').submit();
+				location.href='${context}/member/update_form.do';
 			});
 			$('#deleteButton').addClass('btn btn-primary').click(function() {
-				$form.addClass('form-horizontal').attr('method','post').attr('action','${context}/member/delete.do').submit();
-				//location.href='${context}/member/delete.do?id=${member.id}';
+				location.href='${context}/member/delete.do';
 			});
 		});
 	</script>

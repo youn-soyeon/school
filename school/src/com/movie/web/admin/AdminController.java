@@ -35,6 +35,11 @@ public class AdminController extends HttpServlet {
 			break;
 		case "member_list":
 			System.out.println("==관리자 폼으로 진입(admin_form)==");
+			member.setId(request.getParameter("id"));
+			member.setName(request.getParameter("name"));
+			member.setPassword(request.getParameter("password"));
+			member.setAddr(request.getParameter("addr"));
+			member.setBirth(Integer.parseInt(request.getParameter("birth").replaceAll("-", "")));
 			command = CommandFactory.createCommand(directory, action);
 			break;
 		default:

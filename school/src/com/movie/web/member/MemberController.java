@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.movie.web.global.Command;
 import com.movie.web.global.CommandFactory;
@@ -25,6 +26,7 @@ public class MemberController extends HttpServlet {
 		System.out.println("인덱스에서 들어옴");
 		Command command = new Command();
 		MemberBean member = new MemberBean();
+		HttpSession session = request.getSession();
 		String[] arr = Separator.doSeparate(request);
 		String directory = arr[0], action = arr[1];
 
@@ -32,12 +34,13 @@ public class MemberController extends HttpServlet {
 		case "login":
 			System.out.println("==로그인(login)==");
 			if (service.isMember(request.getParameter("id")) == true) {
+				System.out.println("==아이디가 존재함==");
 				member = service.login(request.getParameter("id"), request.getParameter("password"));
-				if (member.getPassword() != null) {
-					request.setAttribute("member", member);
-					command = CommandFactory.createCommand(directory, "detail");
-				} else {
+				if (member == null) {
 					command = CommandFactory.createCommand(directory, "login_form");
+				} else {
+					session.setAttribute("user", member);//BOM에 해당
+					command = CommandFactory.createCommand(directory, "detail");
 				}
 			} else {
 				command = CommandFactory.createCommand(directory, "login_form");
@@ -61,7 +64,6 @@ public class MemberController extends HttpServlet {
 
 		case "update_form":
 			System.out.println("==수정 폼으로 진입(update_form)==");
-			request.setAttribute("member", service.detail(request.getParameter("id")));
 			command = CommandFactory.createCommand(directory, action);
 			break;
 
@@ -74,10 +76,9 @@ public class MemberController extends HttpServlet {
 			member.setAddr(request.getParameter("addr"));
 			member.setBirth(Integer.parseInt(request.getParameter("birth").replaceAll("-", "")));
 			if (service.update(member) == 1) {
-				request.setAttribute("member", service.detail(request.getParameter("id")));
+				session.setAttribute("user", service.detail(request.getParameter("id")));
 				command = CommandFactory.createCommand(directory, "detail");
 			} else {
-				request.setAttribute("member", service.detail(request.getParameter("id")));
 				command = CommandFactory.createCommand(directory, "update_form");
 			}
 			break;
@@ -87,9 +88,13 @@ public class MemberController extends HttpServlet {
 			if (service.remove(request.getParameter("id")) == 1) {
 				command = CommandFactory.createCommand(directory, "login_form");
 			} else {
-				request.setAttribute("member", service.remove(request.getParameter("id")));
 				command = CommandFactory.createCommand(directory, "detail");
 			}
+			break;
+		case "logout":
+			session.invalidate(); // BOM에 있는 객체 없앰 => DOM에 있는 객체도 사라짐 => 보안up!
+			System.out.println("==로그아웃 성공==");
+			command = CommandFactory.createCommand(directory, "login_form");
 			break;
 		default:
 			command = CommandFactory.createCommand(directory, action);
