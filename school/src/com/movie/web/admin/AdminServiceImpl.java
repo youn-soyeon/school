@@ -40,5 +40,11 @@ public class AdminServiceImpl implements AdminService {
 		return dao.selectGradeById(id);
 	}
 
+	@Override
+	public AdminBean getAdmin(String id, String password) {
+		// 아이디 비밀번호로 관리자 정보 가져오기
+		return dao.selectAdmin(id, password);
+	}
+
 
 }

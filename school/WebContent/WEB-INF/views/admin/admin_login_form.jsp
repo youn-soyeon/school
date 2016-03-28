@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="../global/header.jsp"/>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:include page="../admin/admin_header.jsp"/>
 	<style type="text/css">
-		#login{
+		#admin_login{
 			margin-top: 5em;
 		}
 	</style>
 
-	<div id="login">
+	<div id="admin_login">
 		<div class="loginTop text-center" >
 			<img src="${context}/resources/img/member/heart.png" id="heart"/>
 		</div>
@@ -30,19 +31,16 @@
 		</div>
 		</form>
 		<div class="input_button text-center">
-			<button id="loginButton">로그인</button>
+			<button id="adminLoginButton">로그인</button>
 		</div>
 	</div>
 </body>
-<script>
-	$(function() {
-		
-		$('#heart').css('border','0').css('height','160px').css('width','300px');
-		$form = $('form');
-		
-		$('#loginButton').click(function() {
-			$form.attr('action', '${context}/member/login.do').attr('method','post').submit();
+	<script>
+		$(function() {
+			$('#heart').css('border','0').css('height','160px').css('width','300px');
+			$('form').addClass('form-horizontal').attr('method','post').attr('action', '${context}/admin/admin_login.do');
+			$('#adminLoginButton').click(function() {
+				$('form').submit();
+			});
 		});
-	});
-</script>
-</html>
+	</script>

@@ -125,4 +125,30 @@ public class AdminDAOImpl implements AdminDAO {
 		System.out.println("학생 점수 추가 결과 : ");
 		return gradeBeanList;
 	}
+
+	@Override
+	public AdminBean selectAdmin(String id, String password) {
+		// 아이디 비밀번호로 관리자 정보 가져오기
+		AdminBean temp = new AdminBean();
+		try {
+			stmt = conn.createStatement(); // 내부적으로 Factory 패턴 사용
+			rs = stmt.executeQuery("SELECT * FROM Admin WHERE id = '" + id + "' AND password = '" + password + "'");
+			while (rs.next()) {
+				temp.setId(rs.getString("id"));
+				temp.setName(rs.getString("name"));
+				temp.setPassword(rs.getString("password"));
+				temp.setAddr(rs.getString("addr"));
+				temp.setBirth(rs.getInt("birth"));
+				temp.setRole(rs.getString("role"));
+			}
+			System.out.println(id);
+			System.out.println(password);
+			System.out.println(temp);
+		} catch (Exception e) {
+			System.out.println("selectAdmin()에서 에러 발생");
+			e.printStackTrace();
+		}
+		System.out.println("쿼리 조회 결과 : " + temp.getName());
+		return temp;
+	}
 }
