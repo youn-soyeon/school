@@ -30,17 +30,13 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 								학생검색 <span class="caret"></span>
 							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">이름 검색</a></li>
-								<li><a href="#">ID 검색</a></li>
-							</ul>
 						</li>
 					</ul>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
+							<input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search">
 						</div>
-						<button type="submit" class="btn btn-default">검색</button>
+						<button id="searchBtn" class="btn btn-default">검색</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#">로그아웃</a></li>
@@ -51,3 +47,11 @@
 			<!-- /.container-fluid -->
 		</nav>
 	</header>
+	
+	<script>
+		$(function() {
+			$('#serchBtn').click(function() {
+				$('form').attr('action','${context}/member/search.do');	
+			});
+		});
+	</script>

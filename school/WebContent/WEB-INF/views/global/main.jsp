@@ -6,7 +6,7 @@
 		<div>
 			<h4><a href="${context}/member/login_form.do">로그인 이동</a></h4>
 			<h4><a href="${context}/member/join_form.do">회원가입 이동</a></h4>
-			<h4><a href="${context}/admin/admin_login_form.do">관리자 이동</a></h4>
+			<h4><a href="${context}/admin/login_form.do">관리자 이동</a></h4>
 			<!-- <form id="admin_login"><h4><a href="#">관리자 이동</a></h4></form> -->
 		</div>
 	</div>

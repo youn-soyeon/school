@@ -127,28 +127,27 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public AdminBean selectAdmin(String id, String password) {
+	public AdminBean selectAdmin(AdminBean temp) {
 		// 아이디 비밀번호로 관리자 정보 가져오기
-		AdminBean temp = new AdminBean();
+		AdminBean admin = new AdminBean();
 		try {
-			stmt = conn.createStatement(); // 내부적으로 Factory 패턴 사용
-			rs = stmt.executeQuery("SELECT * FROM Admin WHERE id = '" + id + "' AND password = '" + password + "'");
+			pstmt = conn.prepareStatement("SELECT * FROM Admin WHERE id=? AND password=?"); // 내부적으로 Factory 패턴 사용
+			pstmt.setString(1, temp.getId());
+			pstmt.setString(2, temp.getPassword());
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				temp.setId(rs.getString("id"));
-				temp.setName(rs.getString("name"));
-				temp.setPassword(rs.getString("password"));
-				temp.setAddr(rs.getString("addr"));
-				temp.setBirth(rs.getInt("birth"));
-				temp.setRole(rs.getString("role"));
+				admin.setId(rs.getString("id"));
+				admin.setName(rs.getString("name"));
+				admin.setPassword(rs.getString("password"));
+				admin.setAddr(rs.getString("addr"));
+				admin.setBirth(rs.getInt("birth"));
+				admin.setRole(rs.getString("role"));
 			}
-			System.out.println(id);
-			System.out.println(password);
-			System.out.println(temp);
 		} catch (Exception e) {
 			System.out.println("selectAdmin()에서 에러 발생");
 			e.printStackTrace();
 		}
-		System.out.println("쿼리 조회 결과 : " + temp.getName());
-		return temp;
+		System.out.println(" selectAdmin() 쿼리 조회 결과 : " + admin);
+		return admin;
 	}
 }

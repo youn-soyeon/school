@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.movie.web.global.Constants;
 import com.movie.web.global.DatabaseFactory;
@@ -149,6 +151,29 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		System.out.println("쿼리 조회 결과 : " + isMember);
 		return isMember;
+	}
+
+	@Override
+	public List<MemberBean> selectList() {
+		// 전체 회원 정보 보기
+		List<MemberBean> memberList = new ArrayList<MemberBean>();
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Member");
+			while (rs.next()) {
+				MemberBean tempBean = new MemberBean();
+				tempBean.setId(rs.getString("id"));
+				tempBean.setName(rs.getString("name"));
+				tempBean.setPassword(rs.getString("password"));
+				tempBean.setAddr(rs.getString("addr"));
+				tempBean.setBirth(rs.getInt("birth"));
+				memberList.add(tempBean);
+			}
+		} catch (Exception e) {
+			System.out.println("selectList()에서 에러 발생");
+			e.printStackTrace();
+		}
+		return memberList;
 	}
 
 }

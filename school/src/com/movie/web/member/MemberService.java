@@ -1,5 +1,7 @@
 package com.movie.web.member;
 
+import java.util.List;
+
 public interface MemberService {
 	// 에러 안뜨는 이유 : static은 먼저 메모리에 로딩이 됨
 	// 한 곳에 코딩했지만
@@ -22,6 +24,10 @@ public interface MemberService {
 	 * 회원로그인
 	 */
 	public MemberBean login(String id, String password);
+	/**
+	 * 회원 리스트 보기
+	 * */
+	public List<MemberBean> getList();
 	/**
 	 * 내정보보기
 	 * */

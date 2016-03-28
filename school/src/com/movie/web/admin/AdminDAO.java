@@ -11,5 +11,5 @@ public interface AdminDAO {
 	public List<GradeMemberBean> selectAllMemberGrade();
 	public int insertScore(GradeBean grade);
 	public List<GradeBean> selectGradeById(String id);
-	public AdminBean selectAdmin(String id, String password);
+	public AdminBean selectAdmin(AdminBean temp);
 }

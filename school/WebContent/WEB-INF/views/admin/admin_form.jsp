@@ -6,34 +6,46 @@
 	    <div class="col-xs-12 col-sm-4 display-cell" >
 		    <ul id="admin_sidebar" class="nav nav-pills nav-stacked">
 		    	<li class="dropdown active">
-		    		<a onclick="admin.memberList()">전체 학생 보기</a>
+		    		<a href="#" id="member_list">전체 학생 보기</a>
 		    	</li>
-		    	<li><a onclick="admin.gradeList()">전체 성적 보기</a></li>
-		    	<li><a onclick="admin.searchById()">ID로 회원 검색</a>	</li>
-		    	<li><a onclick="admin.searchByName()">이름으로 회원 검색</a></li>
-		    	<li><a onclick="admin.addScore()">학생 점수 입력</a></li>
+		    	<li><a href="#" id="grade_list">전체 성적 보기</a></li>
+		    	<li><a href="#" id="grade_regist">학생 점수 입력</a></li>
 		    </ul>
 	    </div>
 	    <div class="col-xs-12 col-sm-8 display-cell" id="result" style="border: 1px solid black;height: 500px">
-	        <jsp:include page="../member/member_list.jsp"/>
+	        <%-- <jsp:include page="../member/member_list.jsp"/> --%>
 	    </div>
 	</div>
 </div>	
 <script src="${context }/resources/js/admin.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$('#result').load('${context}/member/list.do');
 		$('#admin_sidebar').children().first().addClass('dropdown active');
 		$('#admin_sidebar').children().click(function() {
 			$(this).addClass('dropdown active');
 			$(this).siblings().removeClass('dropdown active');
 		});
+		$('#member_list').click(function() {
+			$('#result').empty();
+			$('#result').load('${context}/member/list.do');
+		});
+		$('#grade_list').click(function() {
+			$('#result').empty();
+			$('#result').load('${context}/grade/list.do');
+		});
+		$('#grade_regist').click(function() {
+			$('#result').empty();
+			/* insert하는 폼만 가져오기 add이기때문 */
+			$('#result').load('${context}/member/grade_add.do');
+		});
 	});
-	var admin = {
+	/* var admin = {
 			memberList : function() {
 				$('result').location.href='${context}/admin/member_list.do';
 			},
 			gradeList : function() {
 				$('result').location.href='${context}/admin/grade_list.do';
 			}
-	}
+	} */
 </script>

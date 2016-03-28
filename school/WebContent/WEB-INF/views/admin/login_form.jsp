@@ -38,9 +38,8 @@
 	<script>
 		$(function() {
 			$('#heart').css('border','0').css('height','160px').css('width','300px');
-			$('form').addClass('form-horizontal').attr('method','post').attr('action', '${context}/admin/admin_login.do');
 			$('#adminLoginButton').click(function() {
-				$('form').submit();
+				$('form').attr('action', '${context}/admin/login.do').attr('method','post').submit();
 			});
 		});
 	</script>

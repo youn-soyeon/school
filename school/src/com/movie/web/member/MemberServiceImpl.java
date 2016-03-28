@@ -1,5 +1,7 @@
 package com.movie.web.member;
 
+import java.util.List;
+
 public class MemberServiceImpl implements MemberService {
 	private static MemberService instance = new MemberServiceImpl();
 	MemberDAO dao = MemberDAOImpl.getInstance();
@@ -49,6 +51,12 @@ public class MemberServiceImpl implements MemberService {
 	public boolean isMember(String id) {
 		// id 존재 여부 체크
 		return dao.isMember(id);
+	}
+
+	@Override
+	public List<MemberBean> getList() {
+		// 전체 회원 리스트 가져오기
+		return dao.selectList();
 	}
 	
 	

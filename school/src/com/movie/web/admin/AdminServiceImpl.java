@@ -6,6 +6,8 @@ import com.movie.web.grade.GradeBean;
 import com.movie.web.grade.GradeMemberBean;
 import com.movie.web.member.MemberBean;
 
+import sun.security.jca.GetInstance;
+
 /**
  * @file : AdminServiceImple.java
  * @author sssoyeon92@naver.com
@@ -14,7 +16,12 @@ import com.movie.web.member.MemberBean;
  */
 public class AdminServiceImpl implements AdminService {
 
+	private static AdminService instance = new AdminServiceImpl();
 	AdminDAO dao = new AdminDAOImpl();
+	
+	public static AdminService GetInstance(){
+		return instance;
+	}
 	
 	@Override
 	public List<MemberBean> getMemberList() {
@@ -41,9 +48,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public AdminBean getAdmin(String id, String password) {
+	public AdminBean getAdmin(AdminBean temp) {
 		// 아이디 비밀번호로 관리자 정보 가져오기
-		return dao.selectAdmin(id, password);
+		return dao.selectAdmin(temp);
 	}
 
 

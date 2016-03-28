@@ -15,7 +15,8 @@ import com.movie.web.global.DispatcherServlet;
 import com.movie.web.global.Separator;
 
 @WebServlet({ "/member/login_form.do", "/member/join_form.do", "/member/join.do", "/member/login.do",
-		"/member/admin.do", "/member/update_form.do", "/member/update.do", "/member/delete.do" })
+		"/member/admin.do", "/member/update_form.do", "/member/update.do", "/member/delete.do", "/member/list.do",
+		"/member/search.do"})
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	MemberService service = MemberServiceImpl.getInstance();
@@ -90,6 +91,10 @@ public class MemberController extends HttpServlet {
 			} else {
 				command = CommandFactory.createCommand(directory, "detail");
 			}
+			break;
+		case "list":
+			request.setAttribute("list", service.getList());
+			command = CommandFactory.createCommand(directory, "member_list");
 			break;
 		case "logout":
 			session.invalidate(); // BOM에 있는 객체 없앰 => DOM에 있는 객체도 사라짐 => 보안up!

@@ -1,5 +1,7 @@
 package com.movie.web.member;
 
+import java.util.List;
+
 /**
  * @file : MemberDAO.java
  * @author sssoyeon92@naver.com
@@ -13,4 +15,5 @@ public interface MemberDAO {
 	public int update(MemberBean member);
 	public int delete(String id);
 	public boolean isMember(String id);
+	public List<MemberBean> selectList();
 }
