@@ -62,15 +62,17 @@ public class MemberDAOImpl implements MemberDAO {
 				temp.setAddr(rs.getString("addr"));
 				temp.setBirth(rs.getInt("birth"));
 			}
-			System.out.println(id);
-			System.out.println(password);
-			System.out.println(temp);
 		} catch (Exception e) {
 			System.out.println("selectMember()에서 에러 발생");
 			e.printStackTrace();
 		}
 		System.out.println("쿼리 조회 결과 : " + temp.getAddr());
-		return temp;
+		if(temp.getAddr() != null){
+			return temp;
+		} else {
+			return null;
+		}
+		
 
 	}
 

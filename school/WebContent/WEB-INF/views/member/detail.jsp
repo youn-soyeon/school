@@ -35,9 +35,9 @@
 				</fieldset>
 			</form>
 			<div class="input_button text-center">
-						<button id="updateFormButton">수정 폼으로 이동</button>
-						<button id="deleteButton">회원 탈퇴</button>
-					</div>
+				<button id="updateFormButton">수정 폼으로 이동</button>
+				<button id="deleteButton">회원 탈퇴</button>
+			</div>
 		</div>
 	</div>
 	<script>
