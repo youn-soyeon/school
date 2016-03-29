@@ -71,7 +71,7 @@
 					</div>
 					<div class="input_button text-center">
 						<button id='joinButton'>회원가입</button>
-						<button id='cancleButton'>취소</button>
+						<button id='cancelButton'>취소</button>
 					</div>
 				</fieldset>
 			</form>
@@ -95,7 +95,7 @@
 			$('form').attr('method', 'post').attr('action','${context}/member/join.do').submit();
 		});
 		
-		$('#cancleButton').addClass('btn btn-primary').click(function() {
+		$('#cancelButton').addClass('btn btn-primary').click(function() {
 			$('form').reset();		
 		});
 		

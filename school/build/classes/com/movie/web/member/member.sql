@@ -23,6 +23,7 @@ VALUES ('kim2', '김유신', '1', 'LA', 851111);
 INSERT INTO Member(id, name, password, addr, birth)
 VALUES ('yu', '유아인', '1', '강릉', 920505);
 
+
 SELECT * FROM Member;
 
 SELECT * FROM Member
@@ -34,7 +35,7 @@ SELECT * FROM Member
 WHERE id = 'kim' and password = '1';
 
 DELETE FROM Member
-WHERE id = 'choi';
+WHERE id = '3';
 
 UPDATE Member SET major = 'computer', subject = 'java/sql/jsp/spring' WHERE id='hong';
 UPDATE Member SET major = 'computer', subject = 'java/sql/jsp/spring' WHERE id='kim';

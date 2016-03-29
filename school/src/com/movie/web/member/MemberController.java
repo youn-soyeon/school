@@ -1,6 +1,8 @@
 package com.movie.web.member;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,13 +54,22 @@ public class MemberController extends HttpServlet {
 			
 		case "join":
 			System.out.println("==회원 가입(join)==");
-			member.setId(request.getParameter("id"));
-			member.setName(request.getParameter("name"));
-			member.setPassword(request.getParameter("password"));
-			member.setAddr(request.getParameter("addr"));
-			member.setBirth(Integer.parseInt(request.getParameter("birth").replaceAll("-", "")));
-			member.setMajor(request.getParameter("major"));
-			member.setSubject(request.getParameter("subject"));
+			Map<String, String[]> map = new HashMap<String, String[]>();
+			map = request.getParameterMap();
+			String[] subjects = map.get("subject");
+			StringBuffer buff = new StringBuffer();
+			for (int i = 0; i < subjects.length; i++) {
+				buff.append(subjects[i] + "/");
+			}
+			System.out.println("투스트링" + buff.toString());
+
+			member.setId(map.get("id")[0]);
+			member.setName(map.get("name")[0]);
+			member.setPassword(map.get("password")[0]);
+			member.setAddr(map.get("addr")[0]);
+			member.setBirth(Integer.parseInt(map.get("birth")[0].replaceAll("-", "")));
+			member.setMajor(map.get("major")[0]);
+			member.setSubject(buff.toString());
 
 			if (service.join(member) != 0) {
 				command = CommandFactory.createCommand(directory, "login_form");
@@ -92,7 +103,7 @@ public class MemberController extends HttpServlet {
 			
 		case "delete":
 			System.out.println("==회원 탈퇴(delete)==");
-			if (service.remove(request.getParameter("id")) == 1) {
+			if (service.remove(((MemberBean) session.getAttribute("user")).getId()) == 1) {
 				command = CommandFactory.createCommand(directory, "login_form");
 			} else {
 				command = CommandFactory.createCommand(directory, "detail");

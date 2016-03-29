@@ -43,7 +43,7 @@
 			<div class="input_button text-center">
 				<button id="updateButton">수정하기</button>
 				<button id="myGradeButton">내 성적 보기</button>
-				<button id="cancleButton">취소</button>
+				<button id="cancelButton">취소</button>
 			</div>
 		</div>
 	</div>
@@ -54,7 +54,10 @@
 		$('#updateButton').addClass('btn btn-primary').click(function() {
 			$('form').submit();
 		});
-		$('#cancleButton').addClass('btn btn-primary').click(function() {
+		$('#myGradeButton').addClass('btn btn-primary').click(function() {
+			//쀼쀼
+		});
+		$('#cancelButton').addClass('btn btn-primary').click(function() {
 			$('form').reset();
 		});
 		
