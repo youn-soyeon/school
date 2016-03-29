@@ -78,29 +78,34 @@
 		</div>
 	</div>
 </body>
+
 <script>
 	$(function() {
 		
 		$('form').addClass('form-horizontal');
 		$('#joinButton').addClass('btn btn-primary').click(function() {
-			var id = $('input:text[name=id]').val();
-			var password = $('input:text[name=password]').val();
-			var name = $('input:text[name=name]').val();
-			var addr = $('input:radio[name=addr]').val();
-			var birth = $('input:text[name=birth]').val();
-			var major = $('select[name=major] option:selected').val();
-			var subjects = formTag.checkbox($('input:checkbox[name=subject]:checked'));
-			alert('아이디 : ' + id + ', 비밀번호 : ' + password + ', 이름 : ' + name + ', 생년월일 : ' 
-					+ birth + ', 주소 : ' + addr + ', 전공 : ' + major + ', 수강과목 : ' + subjects);
 			$('form').attr('method', 'post').attr('action','${context}/member/join.do').submit();
 		});
-		
+
 		$('#cancelButton').addClass('btn btn-primary').click(function() {
 			$('form').reset();		
 		});
 		
 	});
-	
+</script>
+
+<%-- 
+
+	var id = $('input:text[name=id]').val();
+	var password = $('input:text[name=password]').val();
+	var name = $('input:text[name=name]').val();
+	var addr = $('input:radio[name=addr]').val();
+	var birth = $('input:text[name=birth]').val();
+	var major = $('select[name=major] option:selected').val();
+	var subjects = formTag.checkbox($('input:checkbox[name=subject]:checked'));
+	alert('아이디 : ' + id + ', 비밀번호 : ' + password + ', 이름 : ' + name + ', 생년월일 : ' 
+					+ birth + ', 주소 : ' + addr + ', 전공 : ' + major + ', 수강과목 : ' + subjects);
+					
 	var formTag = {};
 	formTag.checkbox = function(subjects) {
 		var arr = [];
@@ -109,5 +114,5 @@
 		});
 		return arr;
 	}
-	
-</script>
+					
+ --%>

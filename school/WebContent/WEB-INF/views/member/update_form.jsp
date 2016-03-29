@@ -38,6 +38,18 @@
 							<input type="text" class="form-control" id="birth" name="birth" value="${user.birth }" readonly="readonly"/>
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="input_name" class="col-sm-4 control-label">전공</label>
+					 	<div class="col-sm-4">
+					 	<input type="text" class="form-control" id="subject" name="subject" value="${user.major }" readonly="readonly"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="input_name" class="col-sm-4 control-label">수강과목</label>
+					 	<div class="col-sm-4">
+					 	<input type="text" class="form-control" id="birth" name="birth" value="${user.subject }" readonly="readonly"/>
+						</div>
+					</div>
 				</fieldset>
 			</form>
 			<div class="input_button text-center">

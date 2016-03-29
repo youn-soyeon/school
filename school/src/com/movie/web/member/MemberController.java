@@ -53,25 +53,39 @@ public class MemberController extends HttpServlet {
 			break;
 			
 		case "join":
-			System.out.println("==회원 가입(join)==");
-			Map<String, String[]> map = new HashMap<String, String[]>();
-			map = request.getParameterMap();
-			String[] subjects = map.get("subject");
+//			System.out.println("==회원 가입(join)==");
+//			Map<String, String[]> map = new HashMap<String, String[]>();
+//			map = request.getParameterMap();
+//			String[] subjects = map.get("subject");
+//			StringBuffer buff = new StringBuffer();
+//			for (int i = 0; i < subjects.length; i++) {
+//				buff.append(subjects[i] + "/");
+//			}
+//
+//			member.setId(map.get("id")[0]);
+//			member.setName(map.get("name")[0]);
+//			member.setPassword(map.get("password")[0]);
+//			member.setAddr(map.get("addr")[0]);
+//			member.setBirth(Integer.parseInt(map.get("birth")[0].replaceAll("-", "")));
+//			member.setMajor(map.get("major")[0]);
+//			member.setSubject(buff.toString());
+			
+			
+			String[] subjects = request.getParameterValues("subject");
 			StringBuffer buff = new StringBuffer();
 			for (int i = 0; i < subjects.length; i++) {
 				buff.append(subjects[i] + "/");
 			}
-			System.out.println("투스트링" + buff.toString());
-
-			member.setId(map.get("id")[0]);
-			member.setName(map.get("name")[0]);
-			member.setPassword(map.get("password")[0]);
-			member.setAddr(map.get("addr")[0]);
-			member.setBirth(Integer.parseInt(map.get("birth")[0].replaceAll("-", "")));
-			member.setMajor(map.get("major")[0]);
+			
+			member.setId(request.getParameter("id"));
+			member.setName(request.getParameter("name"));
+			member.setPassword(request.getParameter("password"));
+			member.setAddr(request.getParameter("addr"));
+			member.setBirth(Integer.parseInt(request.getParameter("birth").replaceAll("-", "")));
+			member.setMajor(request.getParameter("major"));
 			member.setSubject(buff.toString());
 
-			if (service.join(member) != 0) {
+			if (service.join(member) == 1) {
 				command = CommandFactory.createCommand(directory, "login_form");
 			} else {
 				command = CommandFactory.createCommand(directory, "join_form");
