@@ -50,13 +50,12 @@
 	
 	<script>
 	$(function() {
-		$form = $('form');
-		$form.addClass('form-horizontal').attr('method','post').attr('action','${context}/member/update.do');
+		$('form').addClass('form-horizontal').attr('method','post').attr('action','${context}/member/update.do');
 		$('#updateButton').addClass('btn btn-primary').click(function() {
-			$form.submit();
+			$('form').submit();
 		});
 		$('#cancleButton').addClass('btn btn-primary').click(function() {
-			$form.reset();
+			$('form').reset();
 		});
 		
 	});

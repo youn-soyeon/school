@@ -10,6 +10,7 @@
 	<div id="admin_login">
 		<div class="loginTop text-center" >
 			<img src="${context}/resources/img/member/heart.png" id="heart"/>
+			<h4>관리자 로그인 페이지</h4>
 		</div>
 		<form class="form-horizontal">
 		<div class="loginCenter row" style="margin-left: 43.5%;">

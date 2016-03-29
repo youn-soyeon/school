@@ -25,11 +25,13 @@ public class MemberController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("인덱스에서 들어옴");
-		Command command = new Command();
-		MemberBean member = new MemberBean();
-		HttpSession session = request.getSession();
 		String[] arr = Separator.doSeparate(request);
 		String directory = arr[0], action = arr[1];
+		
+		MemberBean member = new MemberBean();
+		
+		Command command = new Command();
+		HttpSession session = request.getSession();
 
 		switch (action) {
 		case "login":

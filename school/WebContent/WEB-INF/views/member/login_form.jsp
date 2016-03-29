@@ -9,6 +9,7 @@
 	<div id="login">
 		<div class="loginTop text-center" >
 			<img src="${context}/resources/img/member/heart.png" id="heart"/>
+			<h4>멤버 로그인 페이지</h4>
 		</div>
 		<form class="form-horizontal">
 		<div class="loginCenter row" style="margin-left: 43.5%;">
@@ -36,12 +37,9 @@
 </body>
 <script>
 	$(function() {
-		
 		$('#heart').css('border','0').css('height','160px').css('width','300px');
-		$form = $('form');
-		
-		$('#loginButton').click(function() {
-			$form.attr('action', '${context}/member/login.do').attr('method','post').submit();
+		$('#loginButton').addClass('btn btn-primary').click(function() {
+			$('form').attr('action', '${context}/member/login.do').attr('method','post').submit();
 		});
 	});
 </script>

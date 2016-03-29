@@ -37,7 +37,7 @@
 		$('#grade_regist').click(function() {
 			$('#result').empty();
 			/* insert하는 폼만 가져오기 add이기때문 */
-			$('#result').load('${context}/member/grade_add.do');
+			$('#result').load('${context}/grade/grade_add.do');
 		});
 	});
 	/* var admin = {

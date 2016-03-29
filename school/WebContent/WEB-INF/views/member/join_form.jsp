@@ -72,7 +72,6 @@
 			<div class="input_button text-center">
 				<button id='joinButton'>회원가입</button>
 				<button id='cancelButton'>취소</button>
-					
 			</div>
 		</div>
 	</div>
@@ -80,13 +79,12 @@
 <!-- action="${context}/member/join.do" method="post" name="joinForm"  -->
 <script>
 	$(function() {
-		$form = $('form');
-		$form.addClass('form-horizontal');
+		$('form').addClass('form-horizontal');
 		$('#joinButton').addClass('btn btn-primary').click(function() {
-			$form.attr('method','post').attr('action','${context}/member/join.do').submit();
+			$('form').attr('method','post').attr('action','${context}/member/join.do').submit();
 		})
 		$('#cancleButton').addClass('btn btn-primary').click(function() {
-			$form.reset();		
+			$('form').reset();		
 		})
 	});
 </script>
