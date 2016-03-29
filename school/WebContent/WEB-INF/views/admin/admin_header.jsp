@@ -39,7 +39,7 @@
 						<button id="searchBtn" class="btn btn-default">검색</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">로그아웃</a></li>
+						<li><a href="${context }/admin/logout.do">로그아웃</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

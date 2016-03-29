@@ -14,7 +14,7 @@ import com.movie.web.global.DispatcherServlet;
 import com.movie.web.global.Separator;
 import com.movie.web.member.MemberBean;
 
-@WebServlet({"/admin/login_form.do","/admin/admin_form.do", "/admin/login.do"})
+@WebServlet({"/admin/login_form.do","/admin/admin_form.do", "/admin/login.do", "/admin/logout.do"})
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

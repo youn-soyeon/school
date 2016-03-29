@@ -32,6 +32,8 @@ INSERT INTO Grade(score_seq, id, java, sql, jsp, spring)
 VALUES (score_seq.NEXTVAL, 'yoon', 100, 85, 95, 90);
 INSERT INTO Grade(score_seq, id, java, sql, jsp, spring)
 VALUES (score_seq.NEXTVAL, 'kim2', 20, 10, 55, 45);
+INSERT INTO Grade(score_seq, id, java, sql, jsp, spring)
+VALUES (score_seq.NEXTVAL, 'kim2', 1, 1, 1, 1);
 
 SELECT * FROM Grade;
 

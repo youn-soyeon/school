@@ -32,24 +32,22 @@ public class GradeDAOImpl implements GradeDAO {
 	}
 
 	@Override
-	public String insert(GradeMemberBean bean) {
-		String tempStr = "데이터 등록에 실패하였습니다.";
+	public int insert(GradeBean gradeBean) {
+		// 학생 성적 추가(등록)
+		int result = 0;
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO Grade(scoreSeq, id, java, sql, jsp, spring) VALUES(scoreSeq.NEXTVAL,?,?,?,?,?)");
-			pstmt.setString(1, bean.getId());
-			pstmt.setInt(2, bean.getJava());
-			pstmt.setInt(3, bean.getSql());
-			pstmt.setInt(4, bean.getJsp());
-			pstmt.setInt(5, bean.getSpring());
-			
-			pstmt.executeUpdate();
-
-			tempStr = "데이터 등록에 성공하였습니다.";
+			pstmt = conn.prepareStatement("INSERT INTO Grade(score_seq, id, java, sql, jsp, spring) VALUES(score_seq.NEXTVAL,?,?,?,?,?)");
+			pstmt.setString(1, gradeBean.getId());
+			pstmt.setInt(2, gradeBean.getJava());
+			pstmt.setInt(3, gradeBean.getSql());
+			pstmt.setInt(4, gradeBean.getJsp());
+			pstmt.setInt(5, gradeBean.getSpring());
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("insert()에서 에러 발생");
 			e.printStackTrace();
 		}
-		return tempStr;
+		return result;
 	}
 
 	@Override
@@ -65,7 +63,7 @@ public class GradeDAOImpl implements GradeDAO {
 				bean.setPassword(rs.getString("password"));
 				bean.setAddr(rs.getString("addr"));
 				bean.setBirth(rs.getInt("birth"));
-				bean.setScoreSeq(rs.getInt("scoreSeq"));
+				bean.setScoreSeq(rs.getInt("score_seq"));
 				bean.setJava(rs.getInt("java"));
 				bean.setSql(rs.getInt("sql"));
 				bean.setJsp(rs.getInt("jsp"));

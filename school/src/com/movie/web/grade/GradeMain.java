@@ -15,7 +15,7 @@ public class GradeMain {
 			switch (s.nextInt()) {
 			case 1: 
 				System.out.println("등록하고자 하는 학생의 id, JAVA, SQL, JSP, 스프링 점수, 이름, 비밀번호, 주소, 생년월일을 입력하세요. > ");
-				service.input(new GradeMemberBean(s.next(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt(), s.next(), s.next(), s.next() ,s.nextInt())); // Bean > DAO > DB전달
+				int result = service.input(new GradeBean(s.next(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt())); // Bean > DAO > DB전달
 				break;
 			case 2: 
 				System.out.println("수정하려는 성적표의 학번, java, sql, jsp, spring 점수를 입력하세요 > ");
