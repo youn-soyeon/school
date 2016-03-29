@@ -7,11 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.movie.web.global.Command;
 import com.movie.web.global.CommandFactory;
 import com.movie.web.global.DispatcherServlet;
 import com.movie.web.global.Separator;
-import com.movie.web.member.MemberBean;
 
 @WebServlet({ "/jquery/attr.do", "/jquery/core.do", "/jquery/dom.do", "/jquery/event.do", "/jquery/selector.do",
 		"/jquery/traversing.do" })
