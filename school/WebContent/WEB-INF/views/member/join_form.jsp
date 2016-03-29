@@ -6,8 +6,6 @@
 		</div>
 		<div class="joinCenter row">
 			<form >
-			<!-- class="form-horizontal" -->
-			
 				<fieldset class="joinField">
 					<div class="form-group">
 					 	<label for="input_id" class="col-sm-4 control-label">아이디</label>
@@ -53,7 +51,7 @@
 						<label for="input_name" class="col-sm-4 control-label">전공</label>
 					 	<div class="col-sm-4">
 					 		<select name="major" id="major">
-					 			<option value="computer">컴퓨터공학</option>
+					 			<option value="computer" selected>컴퓨터공학</option>
 					 			<option value="info">정보통신공학</option>
 					 			<option value="security">정보보안공학</option>
 					 		</select>
@@ -62,33 +60,54 @@
 					<div class="form-group">
 						<label for="input_name" class="col-sm-4 control-label">수강과목</label>
 					 	<div class="col-sm-4">
-							<input type="checkbox" class="form-control" id="subject" name="subject" /> Java
-							<input type="checkbox" class="form-control" id="subject" name="subject" /> SQL
-							<input type="checkbox" class="form-control" id="subject" name="subject" /> JSP
-							<input type="checkbox" class="form-control" id="subject" name="subject" /> Spring
-							<input type="checkbox" class="form-control" id="subject" name="subject" /> Python
-							<input type="checkbox" class="form-control" id="subject" name="subject" /> Node.js
-							<input type="checkbox" class="form-control" id="subject" name="subject" /> Android
+							<input type="checkbox" class="form-control" id="subject" name="subject" value="java"/> Java 
+							<input type="checkbox" class="form-control" id="subject" name="subject" value="sql"/> SQL
+							<input type="checkbox" class="form-control" id="subject" name="subject" value="jsp"/> JSP
+							<input type="checkbox" class="form-control" id="subject" name="subject" value="spring"/> Spring
+							<input type="checkbox" class="form-control" id="subject" name="subject" value="python"/> Python
+							<input type="checkbox" class="form-control" id="subject" name="subject" value="nodejs"/> Node.js
+							<input type="checkbox" class="form-control" id="subject" name="subject" value="android"/> Android
 						</div>
+					</div>
+					<div class="input_button text-center">
+						<button id='joinButton'>회원가입</button>
+						<button id='cancleButton'>취소</button>
 					</div>
 				</fieldset>
 			</form>
-			<div class="input_button text-center">
-				<button id='joinButton'>회원가입</button>
-				<button id='cancelButton'>취소</button>
-			</div>
 		</div>
 	</div>
 </body>
-<!-- action="${context}/member/join.do" method="post" name="joinForm"  -->
 <script>
 	$(function() {
+		
 		$('form').addClass('form-horizontal');
 		$('#joinButton').addClass('btn btn-primary').click(function() {
-			$('form').attr('method','post').attr('action','${context}/member/join.do').submit();
-		})
+			var id = $('input:text[name=id]').val();
+			var password = $('input:text[name=password]').val();
+			var name = $('input:text[name=name]').val();
+			var addr = $('input:radio[name=addr]').val();
+			var birth = $('input:text[name=birth]').val();
+			var major = $('select[name=major] option:selected').val();
+			var subjects = formTag.checkbox($('input:checkbox[name=subject]:checked'));
+			alert('아이디 : ' + id + ', 비밀번호 : ' + password + ', 이름 : ' + name + ', 생년월일 : ' 
+					+ birth + ', 주소 : ' + addr + ', 전공 : ' + major + ', 수강과목 : ' + subjects);
+			$('form').attr('method', 'post').attr('action','${context}/member/join.do').submit();
+		});
+		
 		$('#cancleButton').addClass('btn btn-primary').click(function() {
 			$('form').reset();		
-		})
+		});
+		
 	});
+	
+	var formTag = {};
+	formTag.checkbox = function(subjects) {
+		var arr = [];
+		subjects.each(function() {
+			arr.push($(this).val());
+		});
+		return arr;
+	}
+	
 </script>

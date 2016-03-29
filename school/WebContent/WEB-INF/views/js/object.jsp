@@ -48,7 +48,7 @@
 		</ul>	
 		<h3>자바 스크립트에서 객체 생성 방법</h3>
 			<ul>
-				<li>생성자함수 : var obj = new Object()</li>
+				<li>생성자함수 : var obj = new Object() (의미론적으로만 정의함)</li>
 				<li>객체리터럴 : var foo = { var opr : function(){} }</li>
 				<li>함수표현식 : var func = function(){}</li>
 			</ul>
