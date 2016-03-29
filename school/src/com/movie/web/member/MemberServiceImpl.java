@@ -11,9 +11,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int join(MemberBean member) {
+	public int join(MemberBean memberBean) {
 		// 회원가입
-		return dao.insert(member);
+		return dao.insert(memberBean);
 	}
 
 	@Override
@@ -36,9 +36,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int update(MemberBean member) {
+	public int update(MemberBean memberBean) {
 		// 회원 정보 수정
-		return dao.update(member);
+		return dao.update(memberBean);
 	}
 
 	@Override

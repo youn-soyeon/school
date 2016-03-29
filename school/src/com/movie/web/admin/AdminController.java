@@ -54,11 +54,11 @@ public class AdminController extends HttpServlet {
 			admin.setId(request.getParameter("id"));
 			admin.setPassword(request.getParameter("password"));
 			AdminBean temp = service.getAdmin(admin);
-			System.out.println("뭐야 : " + temp);
-			System.out.println("아이디체크" + temp.getId().equals(admin.getId()));
-			System.out.println("비번체크"+temp.getPassword().equals(admin.getPassword()));
+			//System.out.println("뭐야 : " + temp);
+			//System.out.println("아이디체크" + temp.getId().equals(admin.getId()));
+			//System.out.println("비번체크"+temp.getPassword().equals(admin.getPassword()));
 			//temp.getId().equals(admin.getId()) && temp.getPassword().equals(admin.getPassword())
-			if (temp != null) {
+			if (temp.getId() != null) {
 				System.out.println("관리자 로그인 성공");
 				session.setAttribute("admin", temp);
 				command = CommandFactory.createCommand(directory, "admin_form");
@@ -66,6 +66,11 @@ public class AdminController extends HttpServlet {
 				System.out.println("관리자 로그인 실패");
 				command = CommandFactory.createCommand(directory, "login_form");
 			}
+			break;
+		case "logout":
+			System.out.println("==관리자 로그아웃(logout)==");
+			session.invalidate();
+			command = CommandFactory.createCommand("global", "main");
 			break;
 		default:
 			command = CommandFactory.createCommand(directory, action);

@@ -3,8 +3,8 @@
 	<tr style="background-color: yellow">
 		<th>아이디</th>
 		<th>이름</th>
-		<!-- <th>전공</th>
-		<th>수강과목</th> -->
+		<th>전공</th>
+		<th>수강과목</th>
 		<th>주소</th>
 		<th>생년월일</th>
 	</tr>
@@ -13,8 +13,8 @@
 		<tr>
 			<td>${member.id }</td>
 			<td><a href="${context }/grade/add_form.do?id=${member.id}">${member.name}</a></td>
-			<%-- <td>${member.major }</td>
-			<td>${member.subjects }</td> --%>
+			<td>${member.major }</td>
+			<td>${member.subject }</td>
 			<td>${member.addr }</td>
 			<td>${member.birth }</td>
 		</tr>
@@ -22,7 +22,6 @@
 </table>
 <script>
 	$(function() {
-		$('#member_list').css('border','1px solid black').css('align','center').css('text-align','center');
 		$('#member_list th').css('border','1px solid black').css('text-align','center');
 		$('#member_list tr').css('border','1px solid black').css('text-align','center');
 		$('#member_list tr td').css('border','1px solid black').css('text-align','center');

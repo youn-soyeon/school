@@ -19,7 +19,7 @@ public interface MemberService {
 	/**
 	 * 회원가입
 	 * */
-	public int join(MemberBean member);
+	public int join(MemberBean memberBean);
 	/**
 	 * 회원로그인
 	 */

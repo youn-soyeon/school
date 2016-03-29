@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="../member/member_header.jsp"/>
+<jsp:include page="../global/header.jsp"/>
 <div id="detail">
 		<div class="joinTop">
-			<h2 class="text-center">${user.name }회원 상세 정보</h2>
+			<h2 class="text-center">${user.name } 회원 상세 정보</h2>
 		</div>
 		<div class="joinCenter row">
 			<form>

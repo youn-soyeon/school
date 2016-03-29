@@ -34,12 +34,14 @@ public class MemberDAOImpl implements MemberDAO {
 		// 회원가입
 		int result = 0;
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO Member(id, name, password, addr, birth) VALUES (?, ?, ?, ?, ?)");
+			pstmt = conn.prepareStatement("INSERT INTO Member(id, name, password, addr, birth, major, subject) VALUES (?, ?, ?, ?, ?, ?, ?)");
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getName());
 			pstmt.setString(3, member.getPassword());
 			pstmt.setString(4, member.getAddr());
 			pstmt.setInt(5, member.getBirth());
+			pstmt.setString(6, member.getMajor());
+			pstmt.setString(7, member.getSubject());
 			// insert문을 수행하고나면 return되는 값은 숫자임
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -53,24 +55,26 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberBean selectById(String id, String password) {
 		// 
-		MemberBean temp = new MemberBean();
+		MemberBean tempBean = new MemberBean();
 		try {
 			stmt = conn.createStatement(); // 내부적으로 Factory 패턴 사용
 			rs = stmt.executeQuery("SELECT * FROM Member WHERE id = '" + id + "' AND password = '" + password + "'");
 			while (rs.next()) {
-				temp.setId(rs.getString("id"));
-				temp.setName(rs.getString("name"));
-				temp.setPassword(rs.getString("password"));
-				temp.setAddr(rs.getString("addr"));
-				temp.setBirth(rs.getInt("birth"));
+				tempBean.setId(rs.getString("id"));
+				tempBean.setName(rs.getString("name"));
+				tempBean.setPassword(rs.getString("password"));
+				tempBean.setAddr(rs.getString("addr"));
+				tempBean.setBirth(rs.getInt("birth"));
+				tempBean.setMajor(rs.getString("major"));
+				tempBean.setSubject(rs.getString("subject"));
 			}
 		} catch (Exception e) {
 			System.out.println("selectMember()에서 에러 발생");
 			e.printStackTrace();
 		}
-		System.out.println("쿼리 조회 결과 : " + temp.getAddr());
-		if(temp.getAddr() != null){
-			return temp;
+		System.out.println("쿼리 조회 결과 : " + tempBean.getAddr());
+		if(tempBean.getAddr() != null){
+			return tempBean;
 		} else {
 			return null;
 		}
@@ -81,34 +85,36 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberBean selectMember(String id) {
 		// 회원조회(id)
-		MemberBean temp = new MemberBean();
+		MemberBean tempBean = new MemberBean();
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM Member WHERE id = '" + id + "'");
 			while (rs.next()) {
-				temp.setId(rs.getString("id"));
-				temp.setName(rs.getString("name"));
-				temp.setPassword(rs.getString("password"));
-				temp.setAddr(rs.getString("addr"));
-				temp.setBirth(rs.getInt("birth"));
+				tempBean.setId(rs.getString("id"));
+				tempBean.setName(rs.getString("name"));
+				tempBean.setPassword(rs.getString("password"));
+				tempBean.setAddr(rs.getString("addr"));
+				tempBean.setBirth(rs.getInt("birth"));
+				tempBean.setMajor(rs.getString("major"));
+				tempBean.setSubject(rs.getString("subject"));
 			}
 		} catch (Exception e) {
 			System.out.println("selectMember()에서 에러 발생");
 			e.printStackTrace();
 		}
-		System.out.println("쿼리 조회 결과 : " + temp.getAddr());
-		return temp;
+		System.out.println("쿼리 조회 결과 : " + tempBean.getAddr());
+		return tempBean;
 	}
 
 	@Override
-	public int update(MemberBean member) {
+	public int update(MemberBean memberBean) {
 		// 회원 정보 수정
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement("UPDATE Member SET password = ?, addr = ? WHERE id = ?");
-			pstmt.setString(1, member.getPassword());
-			pstmt.setString(2, member.getAddr());
-			pstmt.setString(3, member.getId());
+			pstmt.setString(1, memberBean.getPassword());
+			pstmt.setString(2, memberBean.getAddr());
+			pstmt.setString(3, memberBean.getId());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("update()에서 에러 발생");
@@ -167,6 +173,8 @@ public class MemberDAOImpl implements MemberDAO {
 				tempBean.setPassword(rs.getString("password"));
 				tempBean.setAddr(rs.getString("addr"));
 				tempBean.setBirth(rs.getInt("birth"));
+				tempBean.setMajor(rs.getString("major"));
+				tempBean.setSubject(rs.getString("subject"));
 				memberList.add(tempBean);
 			}
 		} catch (Exception e) {

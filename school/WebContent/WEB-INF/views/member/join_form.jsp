@@ -36,7 +36,11 @@
 					<div class="form-group">
 						<label for="input_name" class="col-sm-4 control-label">주소</label>
 					 	<div class="col-sm-4">
-							<input type="text" class="form-control" id="addr" name="addr" placeholder="주소를 입력하세요"/>
+							<input type="radio" id="addr" name="addr" value="서울" checked /> 서울
+							<input type="radio" id="addr" name="addr" value="인천" /> 인천
+							<input type="radio" id="addr" name="addr" value="경기" /> 경기
+							<input type="radio" id="addr" name="addr" value="부산" /> 부산
+							<input type="radio" id="addr" name="addr" value="대전" /> 대전
 						</div>
 					</div>
 					<div class="form-group">

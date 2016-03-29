@@ -57,6 +57,8 @@ public class MemberController extends HttpServlet {
 			member.setPassword(request.getParameter("password"));
 			member.setAddr(request.getParameter("addr"));
 			member.setBirth(Integer.parseInt(request.getParameter("birth").replaceAll("-", "")));
+			member.setMajor(request.getParameter("major"));
+			member.setSubject(request.getParameter("subject"));
 
 			if (service.join(member) != 0) {
 				command = CommandFactory.createCommand(directory, "login_form");
@@ -78,6 +80,8 @@ public class MemberController extends HttpServlet {
 			member.setPassword(request.getParameter("password"));
 			member.setAddr(request.getParameter("addr"));
 			member.setBirth(Integer.parseInt(request.getParameter("birth").replaceAll("-", "")));
+			member.setMajor(request.getParameter("major"));
+			member.setSubject(request.getParameter("subject"));
 			if (service.update(member) == 1) {
 				session.setAttribute("user", service.detail(request.getParameter("id")));
 				command = CommandFactory.createCommand(directory, "detail");

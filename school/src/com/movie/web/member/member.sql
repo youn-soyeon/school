@@ -36,7 +36,23 @@ WHERE id = 'kim' and password = '1';
 DELETE FROM Member
 WHERE id = 'choi';
 
-UPDATE Member
-SET password = 1, addr = '대구'
-WHERE id='choi';
+UPDATE Member SET major = 'computer', subject = 'java/sql/jsp/spring' WHERE id='hong';
+UPDATE Member SET major = 'computer', subject = 'java/sql/jsp/spring' WHERE id='kim';
+UPDATE Member SET major = 'computer', subject = 'java/sql/jsp/spring' WHERE id='lee';
+UPDATE Member SET major = 'info',     subject = 'java/sql/jsp/spring' WHERE id='song';
+UPDATE Member SET major = 'info',     subject = 'java/sql/jsp/spring' WHERE id='yoon';
+UPDATE Member SET major = 'info',     subject = 'java/sql/jsp/spring' WHERE id='kim2';
+UPDATE Member SET major = 'security', subject = 'java/sql/jsp/spring' WHERE id='yu';
+UPDATE Member SET major = 'security', subject = 'java/sql/jsp/spring' WHERE id='jeon';
+
+-- DDL 테이블 수정
+
+-- 1. 컬럼 추가
+ALTER TABLE Member ADD major VARCHAR2(20);
+ALTER TABLE Member ADD subject VARCHAR2(100); --java/sql/jsp/spring
+-- 2. 컬럼 수정(이름)
+ALTER TABLE Member RENAME COLUMN password TO pass;
+-- 3. 컬럼 수정(타입)
+ALTER TABLE Member MODIFY birth DATE; 
+
 

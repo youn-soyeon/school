@@ -17,7 +17,7 @@
 		</c:when>
 		<c:otherwise>
 			<c:choose>
-				<c:when test="${user.level eq 'admin' }">
+				<c:when test="${admin.role eq 'admin' }">
 					<jsp:include page="../admin/admin_header.jsp"/>
 				</c:when>
 				<c:otherwise>
